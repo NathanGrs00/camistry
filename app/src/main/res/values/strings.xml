@@ -3,4 +3,8 @@
 
     <string name="title_bio">Bio</string>
     <string name="placeholder_bio">Here comes the biography…</string>
+    <string name="placeholder_firstname">Firstname</string>
+    <string name="placeholder_age">Age</string>
+
+    <string name="description_image_first">First photo on the dating profile.</string>
 </resources>
