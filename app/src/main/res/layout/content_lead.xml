@@ -17,6 +17,18 @@
         android:contentDescription="@string/description_image_first"
         tools:srcCompat="@tools:sample/avatars" />
 
+    <View
+        android:id="@+id/view"
+        android:layout_width="wrap_content"
+        android:layout_height="75dp"
+        android:background="@drawable/bg_lineargradient_black_t_transparent"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_picture_lead"
+        app:layout_constraintEnd_toEndOf="@+id/iv_picture_lead"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/iv_picture_lead"
+        app:layout_constraintVertical_bias="1.0" />
+
     <TextView
         android:id="@+id/tv_firstname"
         android:layout_width="wrap_content"
@@ -45,5 +57,6 @@
         app:layout_constraintHorizontal_bias="0.954"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.962" />
+        app:layout_constraintVertical_bias="0.964" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
