@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Camistry</string>
+
+    <string name="title_bio">Bio</string>
+
+    <string name="placeholder_bio">Here comes the biography…</string>
+    <string name="placeholder_firstname">First name</string>
+    <string name="placeholder_age">Age</string>
+
+    <string name="description_image_first">First photo on the dating profile.</string>
+    <string name="description_nav_icon">Open navigation menu.</string>
+    <string name="description_user_icon">Open user profile.</string>
+
+    <string name="button_like">Like</string>
+    <string name="button_dislike">Pass</string>
 </resources>
