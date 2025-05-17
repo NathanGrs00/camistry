@@ -6,18 +6,9 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_dislike"
-        android:layout_width="@dimen/button_width"
-        android:layout_height="@dimen/button_height"
-        android:background="@drawable/bg_button_overlay"
+        style="@style/OverlayButtonStyle"
         android:drawableStart="@drawable/ic_cross_small"
-        android:drawablePadding="@dimen/button_drawable_padding"
-        android:fontFamily="@font/serif_bold"
-        android:gravity="center_vertical"
-        android:padding="@dimen/button_padding"
         android:text="@string/button_dislike"
-        android:textAllCaps="false"
-        android:textColor="@color/primary_background_violet"
-        android:textSize="@dimen/button_text_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.15"
@@ -28,24 +19,14 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_like"
-        android:layout_width="@dimen/button_width"
-        android:layout_height="@dimen/button_height"
-        android:background="@drawable/bg_button_overlay"
+        style="@style/OverlayButtonStyle"
         android:drawableStart="@drawable/ic_heart"
-        android:drawablePadding="@dimen/button_drawable_padding"
-        android:fontFamily="@font/serif_bold"
-        android:gravity="center_vertical"
-        android:padding="@dimen/button_padding"
         android:text="@string/button_like"
-        android:textAllCaps="false"
-        android:textColor="@color/primary_background_violet"
-        android:textSize="@dimen/button_text_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.85"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.9" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
