@@ -7,4 +7,7 @@
     <string name="placeholder_age">Age</string>
 
     <string name="description_image_first">First photo on the dating profile.</string>
+
+    <string name="button_like">Like</string>
+    <string name="button_dislike">Dislike</string>
 </resources>
