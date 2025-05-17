@@ -19,7 +19,7 @@
 
     <View
         android:id="@+id/view"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="75dp"
         android:background="@drawable/bg_lineargradient_black_t_transparent"
         app:layout_constraintBottom_toBottomOf="@+id/iv_picture_lead"
@@ -48,7 +48,7 @@
         android:id="@+id/tv_age"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="serif"
+        android:fontFamily="@font/serif_regular"
         android:text="@string/placeholder_age"
         android:textColor="@color/primary_text_platinum"
         android:textSize="32sp"
