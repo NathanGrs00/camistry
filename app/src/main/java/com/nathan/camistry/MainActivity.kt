@@ -17,11 +17,11 @@ class MainActivity : AppCompatActivity() {
         val inflater = LayoutInflater.from(this)
 
         // Use the inflater to create a block view for the bio.
-        val blockView = inflater.inflate(R.layout.content_bio, rootLayout, false)
+        val blockBioView = inflater.inflate(R.layout.content_bio, rootLayout, false)
         //TODO: Make the bio dynamic.
-        blockView.findViewById<TextView>(R.id.tv_bio).text = "Hello, my name is Bob."
+        blockBioView.findViewById<TextView>(R.id.tv_bio).text = "Hello, my name is Bob."
 
         // Add the block view to the root layout.
-        rootLayout.addView(blockView)
+        rootLayout.addView(blockBioView)
     }
 }
