@@ -12,11 +12,10 @@
         android:layout_width="@dimen/icon_size"
         android:layout_height="@dimen/icon_size"
         android:layout_marginStart="@dimen/icon_margin"
-        android:contentDescription="@string/description_burger_menu"
+        android:contentDescription="@string/description_nav_icon"
         app:srcCompat="@drawable/ic_menu_medium" />
 
     <View
-        android:id="@+id/filler_navbar"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1" />
@@ -26,6 +25,6 @@
         android:layout_width="@dimen/icon_size"
         android:layout_height="@dimen/icon_size"
         android:layout_marginEnd="@dimen/icon_margin"
-        android:contentDescription="@string/description_user_profile"
+        android:contentDescription="@string/description_user_icon"
         app:srcCompat="@drawable/ic_user_profile" />
 </LinearLayout>
