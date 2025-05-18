@@ -7,7 +7,7 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_dislike"
         style="@style/OverlayButtonStyle"
-        android:drawableStart="@drawable/ic_cross_small"
+        android:drawableStart="@drawable/ic_cross"
         android:text="@string/button_dislike"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
