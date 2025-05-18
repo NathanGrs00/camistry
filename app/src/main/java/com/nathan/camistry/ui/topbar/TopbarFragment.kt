@@ -32,32 +32,36 @@ class TopbarFragment : Fragment() {
 
         // If the user clicks on the menu icon, show the hamburger menu and the blocker
         ivMenu.setOnClickListener {
-            val menu = requireActivity().findViewById<View>(R.id.fcv_hamburger)
-            val blocker = requireActivity().findViewById<View>(R.id.overlay_blocker)
-            menu.visibility = View.VISIBLE
-            blocker.visibility = View.VISIBLE
+            slideIn()
+        }
+    }
 
-            menu.post {
-                ObjectAnimator.ofFloat(menu, "translationX", -menu.width.toFloat(), 0f).apply {
+    private fun slideIn(){
+        val menu = requireActivity().findViewById<View>(R.id.fcv_hamburger)
+        val blocker = requireActivity().findViewById<View>(R.id.overlay_blocker)
+        menu.visibility = View.VISIBLE
+        blocker.visibility = View.VISIBLE
+
+        menu.post {
+            ObjectAnimator.ofFloat(menu, "translationX", -menu.width.toFloat(), 0f).apply {
+                duration = 400
+                start()
+            }
+        }
+
+        // If the user clicks on the blocker, close the menu
+        blocker.setOnTouchListener { _, event ->
+            if (event.action == MotionEvent.ACTION_UP) {
+                blocker.performClick()
+                ObjectAnimator.ofFloat(menu, "translationX", 0f, -menu.width.toFloat()).apply {
                     duration = 400
                     start()
+                }.doOnEnd {
+                    menu.visibility = View.GONE
+                    blocker.visibility = View.GONE
                 }
             }
-
-            // If the user clicks on the blocker, close the menu
-            blocker.setOnTouchListener { _, event ->
-                if (event.action == MotionEvent.ACTION_UP) {
-                    blocker.performClick()
-                    ObjectAnimator.ofFloat(menu, "translationX", 0f, -menu.width.toFloat()).apply {
-                        duration = 400
-                        start()
-                    }.doOnEnd {
-                        menu.visibility = View.GONE
-                        blocker.visibility = View.GONE
-                    }
-                }
-                true
-            }
+            true
         }
     }
 }
