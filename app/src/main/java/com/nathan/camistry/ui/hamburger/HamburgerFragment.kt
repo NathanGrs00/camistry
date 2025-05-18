@@ -36,25 +36,28 @@ class HamburgerFragment: Fragment() {
         menuList.adapter = MenuAdapter(menuItems) { menuItem ->
             when (menuItem.actionId) {
                 R.id.action_profile -> {
-                    // Handle Profile click
+                    // TODO: navigate to Profile
+                }
+                R.id.action_discover -> {
+                    // TODO: navigate to Discover
                 }
                 R.id.action_connections -> {
-                    // Handle Connections click
+                    // TODO: navigate to Connections
                 }
                 R.id.action_notifications -> {
-                    // Handle Notifications click
+                    // TODO: navigate to Notifications
                 }
                 R.id.action_subscription -> {
-                    // Handle Subscription click
+                    // TODO: navigate to Subscription
                 }
                 R.id.action_about -> {
-                    // Handle About click
+                    // TODO: navigate to About
                 }
                 R.id.action_settings -> {
-                    // Handle Settings click
+                    // TODO: navigate to Settings
                 }
                 R.id.action_logout -> {
-                    // Handle Logout click
+                    // TODO: handle logout
                 }
             }
         }
