@@ -19,5 +19,6 @@
         android:id="@+id/rv_menu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/hamburger_menu_margin_top" />
+        android:layout_marginTop="@dimen/hamburger_menu_margin_top"
+        android:contentDescription="@string/description_menu_list"/>
 </LinearLayout>

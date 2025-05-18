@@ -1,23 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/tv_title"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:padding="@dimen/hamburger_menu_padding">
-
-    <ImageView
-        android:id="@+id/iv_icon"
-        android:layout_width="@dimen/hamburger_menu_icon_size"
-        android:layout_height="@dimen/hamburger_menu_icon_size"
-        android:contentDescription="@string/placeholder_icon"
-        android:layout_marginEnd="@dimen/hamburger_menu_icon_margin" />
-
-    <TextView
-        android:id="@+id/tv_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:fontFamily="@font/serif_regular"
-        android:textSize="@dimen/hamburger_menu_text_size"
-        android:textColor="@color/secondary_text_coral" />
-</LinearLayout>
+    android:drawablePadding="@dimen/hamburger_menu_icon_margin"
+    android:fontFamily="@font/serif_regular"
+    android:padding="@dimen/hamburger_menu_padding"
+    android:textSize="@dimen/hamburger_menu_text_size"
+    android:textColor="@color/secondary_text_coral"
+    android:gravity="center_vertical"
+    app:drawableStartCompat="@drawable/ic_menu_placeholder" />

@@ -3,8 +3,8 @@ package com.nathan.camistry.ui.hamburger
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.recyclerview.widget.RecyclerView
 import com.nathan.camistry.R
 import com.nathan.camistry.model.MenuItem
@@ -14,12 +14,12 @@ class MenuAdapter(
     private val onItemClick: (MenuItem) -> Unit
 ) : RecyclerView.Adapter<MenuAdapter.MenuViewHolder>() {
     inner class MenuViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val icon: ImageView = view.findViewById(R.id.iv_icon)
-        val title: TextView = view.findViewById(R.id.tv_title)
+        private val title: TextView = view.findViewById(R.id.tv_title)
 
         fun bind(item: MenuItem) {
-            icon.setImageResource(item.iconResId)
-            icon.contentDescription = "${item.title} icon"
+            val drawable = AppCompatResources.getDrawable(title.context, item.iconResId)
+            drawable?.setBounds(0, 0, 128, 128)
+            title.setCompoundDrawablesRelative(drawable, null, null, null)
             title.text = item.title
             itemView.setOnClickListener { onItemClick(item) }
         }
