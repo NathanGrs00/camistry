@@ -20,53 +20,40 @@ class HamburgerFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val icProfile = getString(R.string.title_profile)
-        val icConnections = getString(R.string.title_connections)
-        val icNotifications = getString(R.string.title_notifications)
-        val icSubscription = getString(R.string.title_subscription)
-        val icAbout = getString(R.string.title_about)
-        val icSettings = getString(R.string.title_settings)
-        val icLogout = getString(R.string.title_logout)
-
         val menuItems = listOf(
-            MenuItem(icProfile, R.drawable.ic_user_profile),
-            MenuItem(icConnections, R.drawable.ic_videocam),
-            MenuItem(icNotifications, R.drawable.ic_notification_bell),
-            MenuItem(icSubscription, R.drawable.ic_lock),
-            MenuItem(icAbout, R.drawable.ic_heart_question),
-            MenuItem(icSettings, R.drawable.ic_settings),
-            MenuItem(icLogout, R.drawable.ic_logout)
+            MenuItem(getString(R.string.title_profile), R.drawable.ic_user_profile, R.id.action_profile),
+            MenuItem(getString(R.string.title_discover), R.drawable.ic_search, R.id.action_discover),
+            MenuItem(getString(R.string.title_connections), R.drawable.ic_videocam, R.id.action_connections),
+            MenuItem(getString(R.string.title_notifications), R.drawable.ic_notification_bell, R.id.action_notifications),
+            MenuItem(getString(R.string.title_subscription), R.drawable.ic_lock, R.id.action_subscription),
+            MenuItem(getString(R.string.title_about), R.drawable.ic_heart_question, R.id.action_about),
+            MenuItem(getString(R.string.title_settings), R.drawable.ic_settings, R.id.action_settings),
+            MenuItem(getString(R.string.title_logout), R.drawable.ic_logout, R.id.action_logout)
         )
 
         val menuList = view.findViewById<RecyclerView>(R.id.rv_menu)
         menuList.layoutManager = LinearLayoutManager(context)
         menuList.adapter = MenuAdapter(menuItems) { menuItem ->
-            when (menuItem.title) {
-                icProfile -> {
+            when (menuItem.actionId) {
+                R.id.action_profile -> {
                     // Handle Profile click
                 }
-
-                icConnections -> {
+                R.id.action_connections -> {
                     // Handle Connections click
                 }
-
-                icNotifications -> {
+                R.id.action_notifications -> {
                     // Handle Notifications click
                 }
-
-                icSubscription -> {
+                R.id.action_subscription -> {
                     // Handle Subscription click
                 }
-
-                icAbout -> {
+                R.id.action_about -> {
                     // Handle About click
                 }
-
-                icSettings -> {
+                R.id.action_settings -> {
                     // Handle Settings click
                 }
-
-                icLogout -> {
+                R.id.action_logout -> {
                     // Handle Logout click
                 }
             }

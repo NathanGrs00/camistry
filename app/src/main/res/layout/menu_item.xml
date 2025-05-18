@@ -10,4 +10,5 @@
     android:textSize="@dimen/hamburger_menu_text_size"
     android:textColor="@color/secondary_text_coral"
     android:gravity="center_vertical"
-    app:drawableStartCompat="@drawable/ic_menu_placeholder" />
+    app:drawableStartCompat="@drawable/ic_menu_placeholder"
+    android:contentDescription="@string/placeholder_icon"/>

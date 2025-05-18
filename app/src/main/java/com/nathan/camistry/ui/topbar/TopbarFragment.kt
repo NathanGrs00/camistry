@@ -1,7 +1,6 @@
 package com.nathan.camistry.ui.topbar
 
 import android.animation.ObjectAnimator
-import android.view.MotionEvent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -39,11 +38,12 @@ class TopbarFragment : Fragment() {
     private fun slideIn(){
         val menu = requireActivity().findViewById<View>(R.id.fcv_hamburger)
         val blocker = requireActivity().findViewById<View>(R.id.overlay_blocker)
-        menu.visibility = View.VISIBLE
         blocker.visibility = View.VISIBLE
-
         // Load in the menu, otherwise menu.width will be 0
         menu.post {
+            // Initialize the menu's translationX off-screen
+            menu.translationX = -menu.width.toFloat()
+            menu.visibility = View.VISIBLE
             // Animate the menu sliding in from the left
             ObjectAnimator.ofFloat(menu, "translationX", -menu.width.toFloat(), 0f).apply {
                 duration = 400
@@ -52,22 +52,16 @@ class TopbarFragment : Fragment() {
         }
 
         // If the user clicks on the blocker, close the menu
-        blocker.setOnTouchListener { _, event ->
-            // If the user lifts their finger, close the menu
-            if (event.action == MotionEvent.ACTION_UP) {
-                // performClick is needed for accessibility
-                blocker.performClick()
-                // Animate the menu sliding out to the left
-                ObjectAnimator.ofFloat(menu, "translationX", 0f, -menu.width.toFloat()).apply {
-                    duration = 400
-                    start()
-                }.doOnEnd {
-                    // Set the menu and blocker to gone after the animation ends
-                    menu.visibility = View.GONE
-                    blocker.visibility = View.GONE
-                }
+        blocker.setOnClickListener {
+            // Animate the menu sliding out to the left
+            ObjectAnimator.ofFloat(menu, "translationX", 0f, -menu.width.toFloat()).apply {
+                duration = 400
+                start()
+            }.doOnEnd {
+                // Set the menu and blocker to gone after the animation ends
+                menu.visibility = View.GONE
+                blocker.visibility = View.GONE
             }
-            true
         }
     }
 }
