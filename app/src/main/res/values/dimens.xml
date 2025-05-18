@@ -14,7 +14,7 @@
     <dimen name="hamburger_menu_logo_size">40sp</dimen>
     <dimen name="hamburger_menu_width">275dp</dimen>
     <dimen name="hamburger_menu_margin_top">16dp</dimen>
-    <dimen name="hamburger_menu_padding">16dp</dimen>
+    <dimen name="hamburger_menu_padding">10dp</dimen>
     <dimen name="hamburger_menu_icon_size">40dp</dimen>
     <dimen name="hamburger_menu_icon_margin">16dp</dimen>
     <dimen name="hamburger_menu_text_size">26sp</dimen>

@@ -20,46 +20,53 @@ class HamburgerFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val icProfile = getString(R.string.title_profile)
+        val icConnections = getString(R.string.title_connections)
+        val icNotifications = getString(R.string.title_notifications)
+        val icSubscription = getString(R.string.title_subscription)
+        val icAbout = getString(R.string.title_about)
+        val icSettings = getString(R.string.title_settings)
+        val icLogout = getString(R.string.title_logout)
 
         val menuItems = listOf(
-            MenuItem("Profile", R.drawable.ic_user_profile),
-            MenuItem("Connections", R.drawable.ic_videocam),
-            MenuItem("Notifications", R.drawable.ic_notification_bell),
-            MenuItem("Subscription", R.drawable.ic_lock),
-            MenuItem("About", R.drawable.ic_heart_question),
-            MenuItem("Settings", R.drawable.ic_settings),
-            MenuItem("Logout", R.drawable.ic_logout)
+            MenuItem(icProfile, R.drawable.ic_user_profile),
+            MenuItem(icConnections, R.drawable.ic_videocam),
+            MenuItem(icNotifications, R.drawable.ic_notification_bell),
+            MenuItem(icSubscription, R.drawable.ic_lock),
+            MenuItem(icAbout, R.drawable.ic_heart_question),
+            MenuItem(icSettings, R.drawable.ic_settings),
+            MenuItem(icLogout, R.drawable.ic_logout)
         )
 
         val menuList = view.findViewById<RecyclerView>(R.id.rv_menu)
         menuList.layoutManager = LinearLayoutManager(context)
         menuList.adapter = MenuAdapter(menuItems) { menuItem ->
             when (menuItem.title) {
-                "Profile" -> {
+                icProfile -> {
                     // Handle Profile click
                 }
 
-                "Connections" -> {
+                icConnections -> {
                     // Handle Connections click
                 }
 
-                "Notifications" -> {
+                icNotifications -> {
                     // Handle Notifications click
                 }
 
-                "Subscription" -> {
+                icSubscription -> {
                     // Handle Subscription click
                 }
 
-                "About" -> {
+                icAbout -> {
                     // Handle About click
                 }
 
-                "Settings" -> {
+                icSettings -> {
                     // Handle Settings click
                 }
 
-                "Logout" -> {
+                icLogout -> {
                     // Handle Logout click
                 }
             }

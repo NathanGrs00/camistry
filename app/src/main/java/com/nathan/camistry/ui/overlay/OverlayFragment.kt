@@ -19,13 +19,15 @@ class OverlayFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val iconSize = resources.getDimensionPixelSize(R.dimen.icon_size)
+
         val btnLike = view.findViewById<Button>(R.id.btn_like)
-        val iconLike = btnLike.compoundDrawablesRelative[0]
         val btnDislike = view.findViewById<Button>(R.id.btn_dislike)
+        val iconLike = btnLike.compoundDrawablesRelative[0]
         val iconDislike = btnDislike.compoundDrawablesRelative[0]
 
-        iconLike.setBounds(0,0,128,128)
-        iconDislike.setBounds(0,0,128,128)
+        iconLike.setBounds(0,0, iconSize, iconSize)
+        iconDislike.setBounds(0,0, iconSize, iconSize)
 
         btnLike.setCompoundDrawablesRelative(iconLike, null, null, null)
         btnDislike.setCompoundDrawablesRelative(iconDislike, null, null, null)

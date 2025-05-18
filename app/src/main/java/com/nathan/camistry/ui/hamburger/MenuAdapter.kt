@@ -17,8 +17,9 @@ class MenuAdapter(
         private val title: TextView = view.findViewById(R.id.tv_title)
 
         fun bind(item: MenuItem) {
+            val iconSize = itemView.context.resources.getDimensionPixelSize(R.dimen.icon_size)
             val drawable = AppCompatResources.getDrawable(title.context, item.iconResId)
-            drawable?.setBounds(0, 0, 128, 128)
+            drawable?.setBounds(0, 0, iconSize, iconSize)
             title.setCompoundDrawablesRelative(drawable, null, null, null)
             title.text = item.title
             itemView.setOnClickListener { onItemClick(item) }
