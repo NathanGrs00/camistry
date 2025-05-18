@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="action_profile" type="id" />
+    <item name="action_discover" type="id" />
+    <item name="action_connections" type="id" />
+    <item name="action_notifications" type="id" />
+    <item name="action_subscription" type="id" />
+    <item name="action_about" type="id" />
+    <item name="action_settings" type="id" />
+    <item name="action_logout" type="id" />
+</resources>

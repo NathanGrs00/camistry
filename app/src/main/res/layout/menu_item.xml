@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/tv_title"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:drawablePadding="@dimen/hamburger_menu_icon_margin"
+    android:fontFamily="@font/serif_regular"
+    android:padding="@dimen/hamburger_menu_padding"
+    android:textSize="@dimen/hamburger_menu_text_size"
+    android:textColor="@color/secondary_text_coral"
+    android:gravity="center_vertical"
+    app:drawableStartCompat="@drawable/ic_menu_placeholder"
+    android:contentDescription="@string/placeholder_icon"/>
