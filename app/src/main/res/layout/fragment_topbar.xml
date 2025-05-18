@@ -13,7 +13,7 @@
         android:layout_height="@dimen/icon_size"
         android:layout_marginStart="@dimen/icon_margin"
         android:contentDescription="@string/description_nav_icon"
-        app:srcCompat="@drawable/ic_menu_medium" />
+        app:srcCompat="@drawable/ic_menu" />
 
     <View
         android:layout_width="0dp"
