@@ -7,7 +7,7 @@
     android:background="@color/primary_background_violet">
 
     <TextView
-        android:id="@+id/tv_bio_tag"
+        android:id="@+id/tv_interests_tag"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/content_label_height"
         android:layout_marginStart="@dimen/content_label_margin"
@@ -17,7 +17,7 @@
         android:gravity="center"
         android:paddingStart="5dp"
         android:paddingEnd="5dp"
-        android:text="@string/title_bio"
+        android:text="@string/title_interests"
         android:textColor="@color/primary_text_platinum"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,9 +27,9 @@
         app:layout_constraintVertical_bias="0.091" />
 
     <TextView
-        android:id="@+id/tv_bio"
-        android:layout_width="match_parent"
-        android:layout_height="125dp"
+        android:id="@+id/tv_interests"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginStart="@dimen/content_label_margin"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="@dimen/content_label_margin"
@@ -37,12 +37,12 @@
         android:background="@drawable/bg_gray_rounded"
         android:fontFamily="serif"
         android:padding="10dp"
-        android:text="@string/placeholder_bio"
+        android:text="@string/placeholder_interests"
         android:textColor="@color/primary_text_platinum"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_bio_tag"
+        app:layout_constraintTop_toBottomOf="@+id/tv_interests_tag"
         app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
