@@ -2,7 +2,7 @@ package com.nathan.camistry.model
 
 import android.location.Location
 
-class User(
+data class User(
     val id: String,
     val firstName: String,
     val lastName: String,
