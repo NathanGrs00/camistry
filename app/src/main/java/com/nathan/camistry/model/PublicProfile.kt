@@ -2,7 +2,7 @@ package com.nathan.camistry.model
 
 import android.location.Location
 
-class PublicProfile (
+data class PublicProfile (
     val id: String,
     val firstName: String,
     val age: Int,
