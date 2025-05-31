@@ -4,6 +4,6 @@ data class DiscoverPreferences(
     val userId: String,
     val minAge: Int,
     val maxAge: Int,
-    val preferredGender: String,
+    val preferredGender: List<String>,
     val maxDistanceKm: Int
 )
