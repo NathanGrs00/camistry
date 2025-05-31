@@ -7,4 +7,8 @@
     <color name="tertiary_text_earth">#AD5732</color>
     <color name="secondary_text_silver">#BFBFBF</color>
     <color name="primary_black">#282628</color>
+
+    <color name="gradient_start">#000000</color>
+    <color name="gradient_center">#1E000000</color>
+    <color name="gradient_end">#00000000</color>
 </resources>

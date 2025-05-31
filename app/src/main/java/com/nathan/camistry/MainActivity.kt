@@ -3,12 +3,9 @@ package com.nathan.camistry
 import android.location.Location
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
-import androidx.core.view.WindowInsetsControllerCompat
 import com.bumptech.glide.Glide
 import com.nathan.camistry.model.PublicProfile
 
