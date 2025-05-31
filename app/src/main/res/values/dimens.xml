@@ -22,4 +22,6 @@
     <dimen name="content_label_height">20dp</dimen>
     <dimen name="content_label_margin">20dp</dimen>
     <dimen name="content_label_padding">5dp</dimen>
+
+    <dimen name="content_first_photo_gradient_height">100dp</dimen>
 </resources>
