@@ -11,7 +11,7 @@ data class PublicProfile(
     val orientation: String? = null,
     val intentions: String? = null,
     val languages: List<String> = emptyList(),
-    val location: Location = Location("unknown"), // assuming Location has a default constructor
+    val location: Location = Location("unknown"),
     val jobTitle: String? = null,
     val education: String? = null,
     val bio: String? = null,
@@ -32,7 +32,7 @@ data class PublicProfile(
     // Spotify
     val spotifyConnected: Boolean = false,
     val showSpotify: Boolean = false,
-    val topArtists: List<String>? = emptyList(),
+    val topArtists: List<String> = emptyList(),
     val anthemTrackName: String? = null,
     val anthemTrackUrl: String? = null,
 
