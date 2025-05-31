@@ -10,7 +10,7 @@
         <item name="colorSecondaryVariant">@color/tertiary_text_earth</item>
         <item name="colorOnSecondary">@color/primary_black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">@color/secondary_text_coral</item>
         <!-- Customize your theme here. -->
     </style>
 </resources>
