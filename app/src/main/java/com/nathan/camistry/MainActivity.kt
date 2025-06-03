@@ -30,6 +30,8 @@ class MainActivity : AppCompatActivity() {
         // Use the inflater to create a block view for the first photo and bio.
         val leadPhotoView = inflater.inflate(R.layout.content_lead, rootLayout, false)
         val blockBioView = inflater.inflate(R.layout.content_bio, rootLayout, false)
+        val blockBasicInfo = inflater.inflate(R.layout.content_info, rootLayout, false)
+        val blockInterests = inflater.inflate(R.layout.content_interests, rootLayout, false)
 
         val dummyUser = PublicProfile(
             id = "12345",
@@ -65,9 +67,17 @@ class MainActivity : AppCompatActivity() {
         leadPhotoView.findViewById<TextView>(R.id.tv_firstname).text = dummyUser.firstName
         leadPhotoView.findViewById<TextView>(R.id.tv_age).text = dummyUser.age.toString()
         blockBioView.findViewById<TextView>(R.id.tv_bio).text = dummyUser.bio
+        blockBasicInfo.findViewById<TextView>(R.id.tv_height).text = "${dummyUser.heightCm} cm"
+        blockBasicInfo.findViewById<TextView>(R.id.tv_gender).text = dummyUser.gender
+        blockBasicInfo.findViewById<TextView>(R.id.tv_orientation).text = dummyUser.orientation
+        blockBasicInfo.findViewById<TextView>(R.id.tv_location).text = dummyUser.location.provider
+
+        blockBasicInfo.findViewById<TextView>(R.id.tv_languages).text = dummyUser.languages.joinToString(", ")
 
         // Add the block view to the root layout.
         rootLayout.addView(leadPhotoView)
         rootLayout.addView(blockBioView)
+        rootLayout.addView(blockBasicInfo)
+        rootLayout.addView(blockInterests)
     }
 }
