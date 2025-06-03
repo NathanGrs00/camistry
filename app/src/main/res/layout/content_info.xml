@@ -48,9 +48,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Height: "
+                android:text="@string/label_height"
                 android:textStyle="bold"
                 android:textColor="@color/primary_text_platinum"
+                android:layout_marginEnd="@dimen/content_label_margin_right"
                 android:fontFamily="serif" />
             <TextView
                 android:id="@+id/tv_height"
@@ -68,8 +69,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Gender: "
+                android:text="@string/label_gender"
                 android:textStyle="bold"
+                android:layout_marginEnd="@dimen/content_label_margin_right"
                 android:textColor="@color/primary_text_platinum"
                 android:fontFamily="serif" />
             <TextView
@@ -88,8 +90,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Orientation: "
+                android:text="@string/label_orientation"
                 android:textStyle="bold"
+                android:layout_marginEnd="@dimen/content_label_margin_right"
                 android:textColor="@color/primary_text_platinum"
                 android:fontFamily="serif" />
             <TextView
@@ -108,8 +111,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Languages: "
+                android:text="@string/label_languages"
                 android:textStyle="bold"
+                android:layout_marginEnd="@dimen/content_label_margin_right"
                 android:textColor="@color/primary_text_platinum"
                 android:fontFamily="serif" />
             <TextView
@@ -128,8 +132,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Location: "
+                android:text="@string/label_location"
                 android:textStyle="bold"
+                android:layout_marginEnd="@dimen/content_label_margin_right"
                 android:textColor="@color/primary_text_platinum"
                 android:fontFamily="serif" />
             <TextView

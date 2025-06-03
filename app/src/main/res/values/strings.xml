@@ -31,4 +31,10 @@
 
     <string name="button_like">Like</string>
     <string name="button_dislike">Pass</string>
+
+    <string name="label_height">Height:</string>
+    <string name="label_gender">Gender:</string>
+    <string name="label_orientation">Orientation:</string>
+    <string name="label_languages">Languages:</string>
+    <string name="label_location">Location:</string>
 </resources>
