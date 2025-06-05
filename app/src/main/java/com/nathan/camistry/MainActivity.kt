@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
         val blockBioView = inflater.inflate(R.layout.content_bio, rootLayout, false)
         val blockBasicInfo = inflater.inflate(R.layout.content_info, rootLayout, false)
         val blockInterests = inflater.inflate(R.layout.content_interests, rootLayout, false)
+        val blockLifestyle = inflater.inflate(R.layout.content_lifestyle, rootLayout, false)
 
         val dummyUser = PublicProfile(
             id = "12345",
@@ -47,8 +48,8 @@ class MainActivity : AppCompatActivity() {
             jobTitle = "Mechanical Engineer",
             education = "Bachelor's in Mechanical Engineering",
             interests = listOf("Hiking", "Cooking", "Reading"),
-            smokes = false,
-            drinks = true,
+            smokes = "No, but I don't mind if you do",
+            drinks = "Socially",
             hasPets = "No, but I love animals",
             wantsChildren = "I don't know yet",
             photos = listOf("android.resource://com.nathan.camistry/drawable/dummyphoto"),
@@ -71,13 +72,18 @@ class MainActivity : AppCompatActivity() {
         blockBasicInfo.findViewById<TextView>(R.id.tv_gender).text = dummyUser.gender
         blockBasicInfo.findViewById<TextView>(R.id.tv_orientation).text = dummyUser.orientation
         blockBasicInfo.findViewById<TextView>(R.id.tv_location).text = dummyUser.location.provider
-
         blockBasicInfo.findViewById<TextView>(R.id.tv_languages).text = dummyUser.languages.joinToString(", ")
+
+        blockLifestyle.findViewById<TextView>(R.id.tv_smokes).text = dummyUser.smokes
+        blockLifestyle.findViewById<TextView>(R.id.tv_drinks).text = dummyUser.drinks
+        blockLifestyle.findViewById<TextView>(R.id.tv_has_pets).text = dummyUser.hasPets
+        blockLifestyle.findViewById<TextView>(R.id.tv_wants_children).text = dummyUser.wantsChildren
 
         // Add the block view to the root layout.
         rootLayout.addView(leadPhotoView)
         rootLayout.addView(blockBioView)
         rootLayout.addView(blockBasicInfo)
         rootLayout.addView(blockInterests)
+        rootLayout.addView(blockLifestyle)
     }
 }

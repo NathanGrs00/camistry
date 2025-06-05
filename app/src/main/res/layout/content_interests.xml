@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="@dimen/content_label_height"
         android:layout_marginStart="@dimen/content_label_margin"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="@dimen/content_label_margin"
         android:background="@color/secondary_text_coral"
         android:fontFamily="serif"
@@ -24,14 +25,14 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.091" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/tv_interests"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginStart="@dimen/content_label_margin"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="@dimen/content_label_margin"
         android:layout_marginBottom="24dp"
         android:background="@drawable/bg_gray_rounded"

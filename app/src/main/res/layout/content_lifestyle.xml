@@ -7,7 +7,7 @@
     android:background="@color/primary_background_violet">
 
     <TextView
-        android:id="@+id/tv_basic_info_tag"
+        android:id="@+id/tv_lifestyle_tag"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/content_label_height"
         android:layout_marginStart="@dimen/content_label_margin"
@@ -18,7 +18,7 @@
         android:gravity="center"
         android:paddingStart="5dp"
         android:paddingEnd="5dp"
-        android:text="@string/title_basic_info"
+        android:text="@string/title_lifestyle"
         android:textColor="@color/primary_text_platinum"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -26,7 +26,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:id="@+id/ll_basic_info_content"
+        android:id="@+id/ll_lifestyle_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/content_label_margin"
@@ -39,7 +39,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_basic_info_tag">
+        app:layout_constraintTop_toBottomOf="@id/tv_lifestyle_tag">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -51,16 +51,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/content_label_margin_right"
                 android:fontFamily="serif"
-                android:text="@string/label_height"
-                android:textColor="@color/primary_text_platinum"
-                android:textStyle="bold" />
+                android:text="@string/label_smokes"
+                android:textColor="@color/primary_text_platinum" />
 
             <TextView
-                android:id="@+id/tv_height"
+                android:id="@+id/tv_smokes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="serif"
-                android:text="@string/placeholder_height"
+                android:text="@string/placeholder_smokes"
                 android:textColor="@color/primary_text_platinum" />
         </LinearLayout>
 
@@ -74,16 +73,37 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/content_label_margin_right"
                 android:fontFamily="serif"
-                android:text="@string/label_gender"
-                android:textColor="@color/primary_text_platinum"
-                android:textStyle="bold" />
+                android:text="@string/label_drinks"
+                android:textColor="@color/primary_text_platinum" />
 
             <TextView
-                android:id="@+id/tv_gender"
+                android:id="@+id/tv_drinks"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="serif"
-                android:text="@string/placeholder_gender"
+                android:text="@string/placeholder_drinks"
+                android:textColor="@color/primary_text_platinum" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="@dimen/content_label_margin_right"
+                android:fontFamily="serif"
+                android:text="@string/label_has_pets"
+                android:textColor="@color/primary_text_platinum" />
+
+            <TextView
+                android:id="@+id/tv_has_pets"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="serif"
+                android:text="@string/placeholder_has_pets"
                 android:textColor="@color/primary_text_platinum" />
         </LinearLayout>
 
@@ -97,62 +117,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/content_label_margin_right"
                 android:fontFamily="serif"
-                android:text="@string/label_orientation"
-                android:textColor="@color/primary_text_platinum"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tv_orientation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="serif"
-                android:text="@string/placeholder_orientation"
+                android:text="@string/label_wants_children"
                 android:textColor="@color/primary_text_platinum" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/content_label_margin_right"
-                android:fontFamily="serif"
-                android:text="@string/label_languages"
-                android:textColor="@color/primary_text_platinum"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tv_languages"
+                android:id="@+id/tv_wants_children"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="serif"
-                android:text="@string/placeholder_languages"
-                android:textColor="@color/primary_text_platinum" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/content_label_margin_right"
-                android:fontFamily="serif"
-                android:text="@string/label_location"
-                android:textColor="@color/primary_text_platinum"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tv_location"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="serif"
-                android:text="@string/placeholder_location"
+                android:text="@string/placeholder_wants_children"
                 android:textColor="@color/primary_text_platinum" />
         </LinearLayout>
     </LinearLayout>
