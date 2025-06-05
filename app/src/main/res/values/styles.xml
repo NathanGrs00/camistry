@@ -12,4 +12,8 @@
         <item name="android:textColor">@color/primary_background_violet</item>
         <item name="android:textSize">@dimen/button_text_size</item>
     </style>
+    <style name="ContentLabelText">
+        <item name="android:fontFamily">serif</item>
+        <item name="android:textColor">@color/primary_text_platinum</item>
+    </style>
 </resources>
