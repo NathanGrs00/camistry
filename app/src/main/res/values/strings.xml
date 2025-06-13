@@ -15,7 +15,6 @@
     <string name="title_logout">Logout</string>
     
     <string name="text_forgot_password">Forgot password?</string>
-    <string name="text_signup">Signup</string>
 
     <string name="placeholder_bio">Here comes the biography…</string>
     <string name="placeholder_interests">Interest</string>
@@ -38,10 +37,12 @@
     <string name="description_nav_icon">Open navigation menu.</string>
     <string name="description_user_icon">Open user profile.</string>
     <string name="description_menu_list">List of menu items.</string>
+    <string name="description_go_next">Go to the next page.</string>
 
     <string name="button_like">Like</string>
     <string name="button_dislike">Pass</string>
     <string name="button_login">Sign in</string>
+    <string name="button_signup">Sign up</string>
 
     <string name="label_height">Height:</string>
     <string name="label_gender">Gender:</string>
