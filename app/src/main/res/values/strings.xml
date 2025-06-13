@@ -41,7 +41,7 @@
 
     <string name="button_like">Like</string>
     <string name="button_dislike">Pass</string>
-    <string name="button_login">Login</string>
+    <string name="button_login">Sign in</string>
 
     <string name="label_height">Height:</string>
     <string name="label_gender">Gender:</string>
