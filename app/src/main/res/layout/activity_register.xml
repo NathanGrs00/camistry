@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary_background_violet">
+
+    <TextView
+        android:id="@+id/tv_app_name_register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="308dp"
+        android:fontFamily="@font/serif_bold"
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:textColor="@color/secondary_text_coral"
+        android:textSize="@dimen/login_title_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_label_email_register"
+        style="@style/ContentLabelText"
+        android:layout_width="wrap_content"
+        android:layout_height="19dp"
+        android:layout_marginTop="16dp"
+        android:labelFor="@id/et_email"
+        android:text="@string/placeholder_email"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.081"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_app_name_register"
+        app:layout_constraintVertical_bias="0.047" />
+
+    <EditText
+        android:id="@+id/et_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/login_field_margin"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="@dimen/login_field_margin"
+        android:autofillHints="emailAddress"
+        android:background="@drawable/bg_gray_rounded"
+        android:fontFamily="@font/serif_italic"
+        android:inputType="textEmailAddress"
+        android:padding="@dimen/login_field_padding"
+        android:textSize="@dimen/login_field_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_label_email_register" />
+
+    <TextView
+        android:id="@+id/tv_label_password_register"
+        style="@style/ContentLabelText"
+        android:layout_width="wrap_content"
+        android:layout_height="19dp"
+        android:layout_marginTop="28dp"
+        android:labelFor="@id/et_password"
+        android:text="@string/placeholder_password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.086"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_email" />
+
+    <EditText
+        android:id="@+id/et_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/login_field_margin"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="@dimen/login_field_margin"
+        android:autofillHints="password"
+        android:background="@drawable/bg_gray_rounded"
+        android:fontFamily="@font/serif_italic"
+        android:inputType="textPassword"
+        android:padding="@dimen/login_field_padding"
+        android:textSize="@dimen/login_field_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_label_password_register" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_register"
+        style="@style/OverlayButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_button_overlay"
+        android:fontFamily="@font/serif_bold_italic"
+        android:padding="@dimen/login_field_padding"
+        android:text="@string/button_register"
+        android:textAllCaps="false"
+        android:textColor="@color/primary_text_platinum"
+        android:textSize="@dimen/login_field_text_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_password"
+        app:layout_constraintVertical_bias="0.439" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
