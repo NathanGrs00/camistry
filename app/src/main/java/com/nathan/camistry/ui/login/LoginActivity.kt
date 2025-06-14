@@ -1,10 +1,12 @@
 package com.nathan.camistry.ui.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.nathan.camistry.MainActivity
 import com.nathan.camistry.R
 import com.nathan.camistry.controller.LoginController
 
@@ -43,7 +45,8 @@ class LoginActivity : AppCompatActivity() {
                     Toast.makeText(this,
                         "Login successful",
                         Toast.LENGTH_SHORT).show()
-                    // Navigate to next screen here
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
                 } else {
                     Toast.makeText(this,
                         errorMsg ?: "Login failed",
