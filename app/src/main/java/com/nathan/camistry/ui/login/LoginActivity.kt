@@ -3,6 +3,7 @@ package com.nathan.camistry.ui.login
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.nathan.camistry.R
 import com.nathan.camistry.controller.LoginController
@@ -14,23 +15,40 @@ class LoginActivity : AppCompatActivity() {
 
         val etEmail = findViewById<EditText>(R.id.et_email)
         val etPassword = findViewById<EditText>(R.id.et_password)
-
-        val loginController = LoginController()
-        val inputEmail = loginController.sanitizeInput(etEmail.text.toString())
-        val inputPassword = loginController.sanitizeInput(etPassword.text.toString())
-
-        val emailError = loginController.validateEmail(inputEmail)
-        val passwordError = loginController.validatePassword(inputPassword)
-
         val btnLogin = findViewById<Button>(R.id.btn_next)
+        val loginController = LoginController()
 
         btnLogin.setOnClickListener {
+            etEmail.error = null
+            etPassword.error = null
+
+            val inputEmail = loginController.sanitizeInput(etEmail.text.toString())
+            val inputPassword = loginController.sanitizeInput(etPassword.text.toString())
+
+            val emailError = loginController.validateEmail(inputEmail)
+            val passwordError = loginController.validatePassword(inputPassword)
+
             if (emailError != null) {
                 etEmail.error = emailError
+                return@setOnClickListener
             }
 
             if (passwordError != null) {
                 etPassword.error = passwordError
+                return@setOnClickListener
+            }
+
+            loginController.login(inputEmail, inputPassword) { success, errorMsg ->
+                if (success) {
+                    Toast.makeText(this,
+                        "Login successful",
+                        Toast.LENGTH_SHORT).show()
+                    // Navigate to next screen here
+                } else {
+                    Toast.makeText(this,
+                        errorMsg ?: "Login failed",
+                        Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }

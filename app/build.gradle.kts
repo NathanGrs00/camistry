@@ -39,6 +39,7 @@ android {
 dependencies {
     implementation(platform("com.google.firebase:firebase-bom:33.15.0"))
     implementation(libs.firebase.analytics)
+    implementation(libs.firebase.auth)
     implementation(libs.glide)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
