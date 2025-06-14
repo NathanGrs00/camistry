@@ -53,4 +53,7 @@
     <string name="label_drinks">Drinks:</string>
     <string name="label_has_pets">Has Pets:</string>
     <string name="label_wants_children">Wants Children:</string>
+
+    <string name="login_successful">Login successful</string>
+    <string name="login_failed">Login failed</string>
 </resources>

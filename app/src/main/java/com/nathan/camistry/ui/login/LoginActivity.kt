@@ -43,13 +43,14 @@ class LoginActivity : AppCompatActivity() {
             loginController.login(inputEmail, inputPassword) { success, errorMsg ->
                 if (success) {
                     Toast.makeText(this,
-                        "Login successful",
+                        getString(R.string.login_successful),
                         Toast.LENGTH_SHORT).show()
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
+                    finish()
                 } else {
                     Toast.makeText(this,
-                        errorMsg ?: "Login failed",
+                        errorMsg ?: getString(R.string.login_failed),
                         Toast.LENGTH_SHORT).show()
                 }
             }
