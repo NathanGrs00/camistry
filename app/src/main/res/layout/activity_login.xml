@@ -59,12 +59,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/login_field_margin"
         android:layout_marginEnd="@dimen/login_field_margin"
-        android:hint="@string/placeholder_email"
         android:autofillHints="emailAddress"
         android:background="@drawable/bg_gray_rounded"
         android:ems="10"
         android:fontFamily="@font/serif_italic"
         android:inputType="textEmailAddress"
+        android:layout_marginTop="@dimen/label_to_input"
         android:padding="@dimen/login_field_padding"
         android:textSize="@dimen/login_field_text_size"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -81,10 +81,10 @@
         android:layout_marginStart="@dimen/login_field_margin"
         android:layout_marginEnd="@dimen/login_field_margin"
         android:autofillHints="password"
+        android:layout_marginTop="@dimen/label_to_input"
         android:background="@drawable/bg_gray_rounded"
         android:ems="10"
         android:fontFamily="@font/serif_italic"
-        android:hint="@string/placeholder_password"
         android:inputType="textPassword"
         android:padding="@dimen/login_field_padding"
         android:textSize="@dimen/login_field_text_size"
@@ -127,9 +127,10 @@
         android:id="@+id/tv_label_email"
         style="@style/ContentLabelText"
         android:layout_width="wrap_content"
-        android:layout_height="19dp"
+        android:layout_height="wrap_content"
         android:labelFor="@id/et_email"
         android:text="@string/placeholder_email"
+        android:layout_marginTop="@dimen/title_to_content"
         app:layout_constraintBottom_toTopOf="@+id/et_email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.081"
@@ -138,10 +139,10 @@
         app:layout_constraintVertical_bias="0.761" />
 
     <TextView
-        android:id="@+id/tv_label_email2"
+        android:id="@+id/tv_label_password"
         style="@style/ContentLabelText"
         android:layout_width="wrap_content"
-        android:layout_height="19dp"
+        android:layout_height="wrap_content"
         android:labelFor="@id/et_password"
         android:text="@string/placeholder_password"
         app:layout_constraintBottom_toTopOf="@+id/et_password"
@@ -149,6 +150,6 @@
         app:layout_constraintHorizontal_bias="0.086"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_email"
-        app:layout_constraintVertical_bias="0.772" />
+        app:layout_constraintVertical_bias="0.777" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
