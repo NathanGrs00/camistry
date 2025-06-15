@@ -4,11 +4,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.nathan.camistry.MainActivity
 import com.nathan.camistry.R
 import com.nathan.camistry.controller.LoginController
+import com.nathan.camistry.ui.register.RegisterActivity
 import com.nathan.camistry.util.InputUtil
 
 class LoginActivity : AppCompatActivity() {
@@ -19,7 +21,13 @@ class LoginActivity : AppCompatActivity() {
         val etEmail = findViewById<EditText>(R.id.et_email)
         val etPassword = findViewById<EditText>(R.id.et_password)
         val btnLogin = findViewById<Button>(R.id.btn_next)
+        val btnRegister = findViewById<TextView>(R.id.tv_signup)
         val loginController = LoginController()
+
+        btnRegister.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+        }
 
         btnLogin.setOnClickListener {
             etEmail.error = null

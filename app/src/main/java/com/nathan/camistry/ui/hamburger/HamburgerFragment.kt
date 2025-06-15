@@ -1,5 +1,6 @@
 package com.nathan.camistry.ui.hamburger
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,8 +8,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
 import com.nathan.camistry.R
 import com.nathan.camistry.model.MenuItem
+import com.nathan.camistry.ui.login.LoginActivity
 
 class HamburgerFragment: Fragment() {
     override fun onCreateView(
@@ -57,7 +60,11 @@ class HamburgerFragment: Fragment() {
                     // TODO: navigate to Settings
                 }
                 R.id.action_logout -> {
-                    // TODO: handle logout
+                    FirebaseAuth.getInstance().signOut()
+                    val intent = Intent(requireContext(), LoginActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
+                    requireActivity().finish()
                 }
             }
         }
