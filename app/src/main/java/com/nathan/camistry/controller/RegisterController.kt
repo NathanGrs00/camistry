@@ -1,10 +1,10 @@
 package com.nathan.camistry.controller
 
-import com.nathan.camistry.repository.LoginRepository
+import com.nathan.camistry.repository.RegisterRepository
 import com.nathan.camistry.util.ValidationUtil
 
-class LoginController {
-    private val repository = LoginRepository()
+class RegisterController {
+    private val repository = RegisterRepository()
 
     fun validateEmail(email: String): String? {
         return ValidationUtil.validateEmail(email)
@@ -14,7 +14,7 @@ class LoginController {
         return ValidationUtil.validatePassword(password)
     }
 
-    fun login(email: String, password: String, callback: (Boolean, String?) -> Unit) {
-        repository.login(email, password, callback)
+    fun register(email: String, password: String, callback: (Boolean, String?) -> Unit) {
+        repository.register(email, password, callback)
     }
 }

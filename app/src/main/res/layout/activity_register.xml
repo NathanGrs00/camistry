@@ -27,7 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/login_field_margin"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="@dimen/label_to_input"
         android:layout_marginEnd="@dimen/login_field_margin"
         android:autofillHints="password"
         android:background="@drawable/bg_gray_rounded"
@@ -45,7 +45,7 @@
         style="@style/ContentLabelText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/input_to_label"
         android:labelFor="@id/et_password"
         android:text="@string/placeholder_password"
         app:layout_constraintEnd_toEndOf="parent"
@@ -105,7 +105,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/login_field_margin"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="@dimen/label_to_input"
         android:layout_marginEnd="@dimen/login_field_margin"
         android:autofillHints="emailAddress"
         android:background="@drawable/bg_gray_rounded"
@@ -127,10 +127,10 @@
         android:textSize="@dimen/login_subtitle_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.111"
+        app:layout_constraintHorizontal_bias="0.352"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.904" />
+        app:layout_constraintVertical_bias="0.907" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

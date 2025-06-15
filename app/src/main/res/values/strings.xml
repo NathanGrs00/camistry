@@ -44,7 +44,7 @@
     <string name="button_login">Sign in</string>
     <string name="button_signup">Sign up</string>
     <string name="button_register">Register</string>
-    <string name="button_signin_instead">Sign in instead</string>
+    <string name="button_signin_instead">Already have an account? Sign in.</string>
 
     <string name="label_height">Height:</string>
     <string name="label_gender">Gender:</string>
@@ -58,4 +58,6 @@
 
     <string name="login_successful">Login successful</string>
     <string name="login_failed">Login failed</string>
+    <string name="registration_successful">Registration successful</string>
+    <string name="registration_failed">Registration failed</string>
 </resources>
