@@ -15,6 +15,10 @@
 
         <activity
             android:name=".MainActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Camistry"/>
+
+        <activity android:name=".ui.login.LoginActivity"
             android:exported="true"
             android:theme="@style/Theme.Camistry">
             <intent-filter>
@@ -22,5 +26,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".ui.register.RegisterActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Camistry"/>
+
     </application>
 </manifest>
