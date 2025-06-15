@@ -1,46 +1,35 @@
-package com.nathan.camistry.ui.login
+package com.nathan.camistry.ui.register
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.nathan.camistry.MainActivity
 import com.nathan.camistry.R
-import com.nathan.camistry.controller.LoginController
-import com.nathan.camistry.repository.LoginRepository
-import com.nathan.camistry.ui.register.RegisterActivity
+import com.nathan.camistry.controller.RegisterController
+import com.nathan.camistry.repository.RegisterRepository
 import com.nathan.camistry.util.InputUtil
 
-class LoginActivity : AppCompatActivity() {
+class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(R.layout.activity_register)
 
         val etEmail = findViewById<EditText>(R.id.et_email)
         val etPassword = findViewById<EditText>(R.id.et_password)
-        val btnLogin = findViewById<Button>(R.id.btn_next)
-        val btnRegister = findViewById<TextView>(R.id.tv_signup)
-
-        val loginRepository = LoginRepository()
-        val loginController = LoginController(loginRepository)
+        val btnRegister = findViewById<Button>(R.id.btn_register)
+        val registerRepository = RegisterRepository()
+        val registerController = RegisterController(registerRepository)
 
         btnRegister.setOnClickListener {
-            val intent = Intent(this, RegisterActivity::class.java)
-            startActivity(intent)
-        }
-
-        btnLogin.setOnClickListener {
             etEmail.error = null
             etPassword.error = null
 
             val inputEmail = InputUtil.sanitizeInput(etEmail.text.toString())
             val inputPassword = InputUtil.sanitizeInput(etPassword.text.toString())
 
-            val emailError = loginController.validateEmail(inputEmail)
-            val passwordError = loginController.validatePassword(inputPassword)
+            val emailError = registerController.validateEmail(inputEmail)
+            val passwordError = registerController.validatePassword(inputPassword)
 
             if (emailError != null) {
                 etEmail.error = emailError
@@ -52,17 +41,15 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            loginController.login(inputEmail, inputPassword) { success, errorMsg ->
+            registerController.register(inputEmail, inputPassword) { success, errorMsg ->
                 if (success) {
                     Toast.makeText(this,
-                        getString(R.string.login_successful),
+                        getString(R.string.registration_successful),
                         Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
                     finish()
                 } else {
                     Toast.makeText(this,
-                        errorMsg ?: getString(R.string.login_failed),
+                        errorMsg ?: getString(R.string.registration_failed),
                         Toast.LENGTH_SHORT).show()
                 }
             }

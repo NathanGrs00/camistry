@@ -7,7 +7,7 @@
     android:background="@color/primary_background_violet">
 
     <TextView
-        android:id="@+id/tv_app_name2"
+        android:id="@+id/tv_app_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/serif_bold"
@@ -64,24 +64,23 @@
         android:ems="10"
         android:fontFamily="@font/serif_italic"
         android:inputType="textEmailAddress"
-        android:layout_marginTop="@dimen/label_to_input"
         android:padding="@dimen/login_field_padding"
         android:textSize="@dimen/login_field_text_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.478" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_app_name"
+        app:layout_constraintVertical_bias="0.16" />
 
     <EditText
         android:id="@+id/et_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/login_field_margin"
+        android:layout_marginTop="@dimen/label_to_input"
         android:layout_marginEnd="@dimen/login_field_margin"
         android:autofillHints="password"
-        android:layout_marginTop="@dimen/label_to_input"
         android:background="@drawable/bg_gray_rounded"
         android:ems="10"
         android:fontFamily="@font/serif_italic"
@@ -93,7 +92,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_email"
-        app:layout_constraintVertical_bias="0.561" />
+        app:layout_constraintVertical_bias="0.548" />
 
     <TextView
         android:id="@+id/tv_forgot_password"
@@ -130,13 +129,12 @@
         android:layout_height="wrap_content"
         android:labelFor="@id/et_email"
         android:text="@string/placeholder_email"
-        android:layout_marginTop="@dimen/title_to_content"
         app:layout_constraintBottom_toTopOf="@+id/et_email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.081"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_app_name2"
-        app:layout_constraintVertical_bias="0.761" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.974" />
 
     <TextView
         android:id="@+id/tv_label_password"
