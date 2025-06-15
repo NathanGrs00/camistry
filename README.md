@@ -57,44 +57,6 @@ Coming soon.
 
 ---
 
-## 🚀 Getting Started
-
-### 1. Clone the Repository
-
-```bash
-git clone https://github.com/NathanGrs00/camistry.git
-```
-
-### 2. Firebase Setup
-
-To run Camistry locally, you'll need your own Firebase project.
-
-1. Go to the [Firebase Console](https://console.firebase.google.com/)
-2. Create a new Firebase project
-3. Add an **Android app** to your project
-4. Download the `google-services.json` file
-5. Place the file in your project at:
-```
-app/google-services.json
-```
-
----
-
-### 3. Update `applicationId`
-
-To avoid build conflicts:
-
-1. Open `app/build.gradle.kts`
-2. Change the `applicationId` from:
-
-```kotlin
-applicationId = "com.nathan.camistry"
-```
-to the name you gave the project in the Firebase Console:
-```kotlin
-applicationId = "com.example.camistryclone"
-```
-
 ## 🧪 Development Notes
 
 - **Camistry** is **Android-only** for now. iOS may be considered in the future.
@@ -106,14 +68,8 @@ applicationId = "com.example.camistryclone"
 
 ## 🧑‍💻 Contributing
 
-We welcome contributions! Please follow these steps:
-
-1. **Open an issue** or comment on an existing one before starting work.
-2. **Fork** the repository.
-3. **Create a new branch** with a descriptive name.
-4. **Submit a pull request** with clear and concise commits.
-
-> 🔒 **Note:** Contributions must comply with the noncommercial licensing terms below.
+We welcome contributions!
+Please see the CONTRIBUTING.md file for contribution guidelines, coding style, and pull request requirements.
 
 ---
 
