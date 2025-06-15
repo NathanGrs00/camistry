@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.nathan.camistry.R
 import com.nathan.camistry.controller.RegisterController
+import com.nathan.camistry.repository.RegisterRepository
 import com.nathan.camistry.util.InputUtil
 
 class RegisterActivity : AppCompatActivity() {
@@ -17,7 +18,8 @@ class RegisterActivity : AppCompatActivity() {
         val etEmail = findViewById<EditText>(R.id.et_email)
         val etPassword = findViewById<EditText>(R.id.et_password)
         val btnRegister = findViewById<Button>(R.id.btn_register)
-        val registerController = RegisterController()
+        val registerRepository = RegisterRepository()
+        val registerController = RegisterController(registerRepository)
 
         btnRegister.setOnClickListener {
             etEmail.error = null

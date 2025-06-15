@@ -3,8 +3,7 @@ package com.nathan.camistry.controller
 import com.nathan.camistry.repository.RegisterRepository
 import com.nathan.camistry.util.ValidationUtil
 
-class RegisterController {
-    private val repository = RegisterRepository()
+class RegisterController(private val repository : RegisterRepository) {
 
     fun validateEmail(email: String): String? {
         return ValidationUtil.validateEmail(email)

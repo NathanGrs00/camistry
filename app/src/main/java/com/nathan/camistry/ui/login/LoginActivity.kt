@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.nathan.camistry.MainActivity
 import com.nathan.camistry.R
 import com.nathan.camistry.controller.LoginController
+import com.nathan.camistry.repository.LoginRepository
 import com.nathan.camistry.ui.register.RegisterActivity
 import com.nathan.camistry.util.InputUtil
 
@@ -22,7 +23,9 @@ class LoginActivity : AppCompatActivity() {
         val etPassword = findViewById<EditText>(R.id.et_password)
         val btnLogin = findViewById<Button>(R.id.btn_next)
         val btnRegister = findViewById<TextView>(R.id.tv_signup)
-        val loginController = LoginController()
+
+        val loginRepository = LoginRepository()
+        val loginController = LoginController(loginRepository)
 
         btnRegister.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
