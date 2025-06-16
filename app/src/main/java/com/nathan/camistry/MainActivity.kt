@@ -1,13 +1,14 @@
 package com.nathan.camistry
 
-import android.location.Location
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.nathan.camistry.model.PublicProfile
+import com.google.firebase.auth.FirebaseAuth
+import com.nathan.camistry.controller.UserController
+import com.nathan.camistry.repository.UserRepository
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,56 +35,62 @@ class MainActivity : AppCompatActivity() {
         val blockInterests = inflater.inflate(R.layout.content_interests, rootLayout, false)
         val blockLifestyle = inflater.inflate(R.layout.content_lifestyle, rootLayout, false)
 
-        val dummyUser = PublicProfile(
-            id = "12345",
-            firstName = "Bob",
-            age = 25,
-            bio = "Hello, my name is Bob.",
-            heightCm = 184,
-            gender = "Male",
-            orientation = "Straight",
-            intentions = "Long-term relationship",
-            languages = listOf("English", "Spanish"),
-            location = Location("New York"),
-            jobTitle = "Mechanical Engineer",
-            education = "Bachelor's in Mechanical Engineering",
-            interests = listOf("Hiking", "Cooking", "Reading"),
-            smokes = "No, but I don't mind if you do",
-            drinks = "Socially",
-            hasPets = "No, but I love animals",
-            wantsChildren = "I don't know yet",
-            photos = listOf("android.resource://com.nathan.camistry/drawable/dummyphoto"),
-            isVerified = true,
-            isOnline = true,
-        )
+        val userId = FirebaseAuth.getInstance().uid ?: return
+        val userRepository = UserRepository()
+        val userController = UserController(userRepository)
 
-        dummyUser.photos[0].let { photoUrl ->
-            Glide.with(this)
-                .load(photoUrl)
-                // TODO: Make placeholder image (user icon?)
-                .into(leadPhotoView.findViewById(R.id.iv_picture_lead)
-            )
+        userController.getUser(userId) { user ->
+            if (user == null) return@getUser
+
+            user.photos.firstOrNull()?.let { photoUrl ->
+                Glide.with(this)
+                    .load(photoUrl)
+                    .into(leadPhotoView.findViewById(R.id.iv_picture_lead))
+            }
+
+            leadPhotoView.findViewById<TextView>(R.id.tv_firstname).text = user.firstName
+            leadPhotoView.findViewById<TextView>(R.id.tv_age).text = user.age.toString()
+            blockBioView.findViewById<TextView>(R.id.tv_bio).text = user.bio
+            blockBasicInfo.findViewById<TextView>(R.id.tv_height).text = "${user.heightCm} cm"
+            blockBasicInfo.findViewById<TextView>(R.id.tv_gender).text = user.gender
+            blockBasicInfo.findViewById<TextView>(R.id.tv_orientation).text = user.orientation ?: "Not specified"
+            blockBasicInfo.findViewById<TextView>(R.id.tv_location).text = user.location.provider
+            blockBasicInfo.findViewById<TextView>(R.id.tv_languages).text = user.languages.joinToString(", ")
+
+            blockLifestyle.findViewById<TextView>(R.id.tv_smokes).text = user.smokes ?: "Not specified"
+            blockLifestyle.findViewById<TextView>(R.id.tv_drinks).text = user.drinks ?: "Not specified"
+            blockLifestyle.findViewById<TextView>(R.id.tv_has_pets).text = user.hasPets ?: "Not specified"
+            blockLifestyle.findViewById<TextView>(R.id.tv_wants_children).text = user.wantsChildren ?: "Not specified"
+
+            // Add the block view to the root layout.
+            rootLayout.addView(leadPhotoView)
+            rootLayout.addView(blockBioView)
+            rootLayout.addView(blockBasicInfo)
+            rootLayout.addView(blockInterests)
+            rootLayout.addView(blockLifestyle)
         }
 
-        leadPhotoView.findViewById<TextView>(R.id.tv_firstname).text = dummyUser.firstName
-        leadPhotoView.findViewById<TextView>(R.id.tv_age).text = dummyUser.age.toString()
-        blockBioView.findViewById<TextView>(R.id.tv_bio).text = dummyUser.bio
-        blockBasicInfo.findViewById<TextView>(R.id.tv_height).text = "${dummyUser.heightCm} cm"
-        blockBasicInfo.findViewById<TextView>(R.id.tv_gender).text = dummyUser.gender
-        blockBasicInfo.findViewById<TextView>(R.id.tv_orientation).text = dummyUser.orientation
-        blockBasicInfo.findViewById<TextView>(R.id.tv_location).text = dummyUser.location.provider
-        blockBasicInfo.findViewById<TextView>(R.id.tv_languages).text = dummyUser.languages.joinToString(", ")
-
-        blockLifestyle.findViewById<TextView>(R.id.tv_smokes).text = dummyUser.smokes ?: "Not specified"
-        blockLifestyle.findViewById<TextView>(R.id.tv_drinks).text = dummyUser.drinks ?: "Not specified"
-        blockLifestyle.findViewById<TextView>(R.id.tv_has_pets).text = dummyUser.hasPets ?: "Not specified"
-        blockLifestyle.findViewById<TextView>(R.id.tv_wants_children).text = dummyUser.wantsChildren ?: "Not specified"
-
-        // Add the block view to the root layout.
-        rootLayout.addView(leadPhotoView)
-        rootLayout.addView(blockBioView)
-        rootLayout.addView(blockBasicInfo)
-        rootLayout.addView(blockInterests)
-        rootLayout.addView(blockLifestyle)
+//        val dummyUser = PublicProfile(
+//            id = "12345",
+//            firstName = "Bob",
+//            age = 25,
+//            bio = "Hello, my name is Bob.",
+//            heightCm = 184,
+//            gender = "Male",
+//            orientation = "Straight",
+//            intentions = "Long-term relationship",
+//            languages = listOf("English", "Spanish"),
+//            location = Location("New York"),
+//            jobTitle = "Mechanical Engineer",
+//            education = "Bachelor's in Mechanical Engineering",
+//            interests = listOf("Hiking", "Cooking", "Reading"),
+//            smokes = "No, but I don't mind if you do",
+//            drinks = "Socially",
+//            hasPets = "No, but I love animals",
+//            wantsChildren = "I don't know yet",
+//            photos = listOf("android.resource://com.nathan.camistry/drawable/dummyphoto"),
+//            isVerified = true,
+//            isOnline = true,
+//        )
     }
 }
