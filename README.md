@@ -88,6 +88,6 @@ Copyright © 2025 Nathan Geers
 For questions, feedback, or ideas, feel free to:
 
 - [Open an issue](../../issues) on GitHub  
-- Reach out on [LinkedIn](https://www.linkedin.com/in/your-linkedin-profile)
+- Reach out on [LinkedIn](https://www.linkedin.com/in/nathangeers/)
 
 ---
