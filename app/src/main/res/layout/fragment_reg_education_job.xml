@@ -9,7 +9,7 @@
         android:id="@+id/et_education"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:autofillHints="Education"
+        android:autofillHints="education"
         android:inputType="text"
         android:hint="@string/education"
         app:layout_constraintTop_toTopOf="parent"

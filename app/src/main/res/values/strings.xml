@@ -66,4 +66,6 @@
     <string name="name">Name</string>
     <string name="age">Age</string>
     <string name="gender">Gender</string>
+    <string name="name_and_age">Name and Age</string>
+    <string name="education_and_job">Education and Job</string>
 </resources>

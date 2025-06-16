@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/nameAgeFragment"
         android:name="com.nathan.camistry.ui.register.NameAgeGenderFragment"
-        android:label="Name and Age">
+        android:label="@string/name_and_age">
         <action
             android:id="@+id/action_nameAge_to_educationJob"
             app:destination="@id/educationJobFragment" />
@@ -16,5 +16,5 @@
     <fragment
         android:id="@+id/educationJobFragment"
         android:name="com.nathan.camistry.ui.register.JobEducationFragment"
-        android:label="Education and Job" />
+        android:label="@string/education_and_job" />
 </navigation>
