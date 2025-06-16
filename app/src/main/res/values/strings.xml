@@ -71,4 +71,8 @@
     <string name="height">Height</string>
     <string name="orientation">Orientation</string>
     <string name="intention">Intention</string>
+    <string name="languages">Languages</string>
+    <string name="location">Location</string>
+    <string name="interests">Interests</string>
+    <string name="select_location">Select location</string>
 </resources>
