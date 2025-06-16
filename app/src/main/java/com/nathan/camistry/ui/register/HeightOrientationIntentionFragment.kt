@@ -10,27 +10,29 @@ import androidx.fragment.app.Fragment
 import com.nathan.camistry.R
 import com.nathan.camistry.viewmodel.UserRegistrationViewModel
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.fragment.findNavController
 
-class JobEducationFragment : Fragment() {
+class HeightOrientationIntentionFragment : Fragment() {
     private val viewModel: UserRegistrationViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_reg_education_job, container, false)
-        val educationEdit = view.findViewById<EditText>(R.id.et_education)
-        val jobEdit = view.findViewById<EditText>(R.id.et_job)
+        val view = inflater.inflate(R.layout.fragment_reg_height_orientation_intention, container, false)
+        val heightEdit = view.findViewById<EditText>(R.id.et_height)
+        val orientationEdit = view.findViewById<EditText>(R.id.et_orientation)
+        val intentionEdit = view.findViewById<EditText>(R.id.et_intention)
         val nextBtn = view.findViewById<Button>(R.id.btn_next)
 
         nextBtn.setOnClickListener {
-            val education = educationEdit.text.toString()
-            val job = jobEdit.text.toString()
+            val height = heightEdit.text.toString()
+            val orientation = orientationEdit.text.toString()
+            val intention = intentionEdit.text.toString()
             viewModel.user = viewModel.user.copy(
-                education = education,
-                jobTitle = job
+                heightCm = height.toIntOrNull() ?: 0,
+                orientation = orientation,
+                intentions = intention
             )
-            findNavController().navigate(R.id.action_educationJob_to_heightOrientationIntention)
+            // findNavController().navigate(R.id.action_heightOrientationIntention_to_nextStep)
         }
         return view
     }

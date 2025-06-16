@@ -16,5 +16,9 @@
     <fragment
         android:id="@+id/educationJobFragment"
         android:name="com.nathan.camistry.ui.register.JobEducationFragment"
-        android:label="@string/education_and_job" />
+        android:label="@string/education_and_job">
+        <action
+            android:id="@+id/action_educationJob_to_heightOrientationIntention"
+            app:destination="@id/educationJobFragment" />
+    </fragment>
 </navigation>

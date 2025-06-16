@@ -68,4 +68,7 @@
     <string name="gender">Gender</string>
     <string name="name_and_age">Name and Age</string>
     <string name="education_and_job">Education and Job</string>
+    <string name="height">Height</string>
+    <string name="orientation">Orientation</string>
+    <string name="intention">Intention</string>
 </resources>
