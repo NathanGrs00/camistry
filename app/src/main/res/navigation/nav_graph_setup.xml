@@ -35,6 +35,15 @@
         android:id="@+id/languagesLocationFragment"
         android:name="com.nathan.camistry.ui.register.LanguagesLocationFragment"
         android:label="@string/languages_and_location">
+        <action
+            android:id="@+id/action_languagesLocation_to_interest"
+            app:destination="@id/interestFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/interestFragment"
+        android:name="com.nathan.camistry.ui.register.InterestFragment"
+        android:label="@string/interests">
     </fragment>
 
 

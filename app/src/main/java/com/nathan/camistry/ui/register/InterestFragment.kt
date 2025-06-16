@@ -1,4 +1,33 @@
 package com.nathan.camistry.ui.register
 
-class InterestFragment {
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import com.nathan.camistry.R
+import com.nathan.camistry.viewmodel.UserRegistrationViewModel
+
+class InterestFragment : Fragment() {
+    private val viewModel: UserRegistrationViewModel by activityViewModels()
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(R.layout.fragment_reg_interest, container, false)
+        val interestsEdit = view.findViewById<EditText>(R.id.et_interests)
+        val nextBtn = view.findViewById<Button>(R.id.btn_next)
+
+        nextBtn.setOnClickListener {
+            val interests = interestsEdit.text.toString()
+            viewModel.user = viewModel.user.copy(
+                interests = interests.split(",").map { it.trim() }
+            )
+            //findNavController().navigate(R.id.action_interest_to_nextStep)
+        }
+        return view
+    }
 }

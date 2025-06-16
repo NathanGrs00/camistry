@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.nathan.camistry.R
 import com.nathan.camistry.viewmodel.UserRegistrationViewModel
 
@@ -32,7 +33,7 @@ class LanguagesLocationFragment : Fragment() {
                 location = location,
                 interests = interests.split(",").map { it.trim() }
             )
-            // findNavController().navigate(R.id.action_languagesLocation_to_nextStep)
+            findNavController().navigate(R.id.action_languagesLocation_to_interest)
         }
         return view
     }

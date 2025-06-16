@@ -77,4 +77,5 @@
     <string name="select_location">Select location</string>
     <string name="languages_and_location">Languages and Location</string>
     <string name="height_orientation_intention">Height, Orientation and Intentions</string>
+    <string name="enter_your_interests_comma_separated">Enter your interests (comma separated)</string>
 </resources>
