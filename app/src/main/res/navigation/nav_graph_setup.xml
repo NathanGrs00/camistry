@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph_registration"
+    app:startDestination="@id/nameAgeFragment">
+
+    <fragment
+        android:id="@+id/nameAgeFragment"
+        android:name="com.nathan.camistry.ui.register.NameAgeGenderFragment"
+        android:label="Name and Age">
+        <action
+            android:id="@+id/action_nameAge_to_educationJob"
+            app:destination="@id/educationJobFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/educationJobFragment"
+        android:name="com.nathan.camistry.ui.register.JobEducationFragment"
+        android:label="Education and Job" />
+</navigation>
