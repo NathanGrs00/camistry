@@ -19,6 +19,24 @@
         android:label="@string/education_and_job">
         <action
             android:id="@+id/action_educationJob_to_heightOrientationIntention"
-            app:destination="@id/educationJobFragment" />
+            app:destination="@id/heightOrientationIntentionFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/heightOrientationIntentionFragment"
+        android:name="com.nathan.camistry.ui.register.HeightOrientationIntentionFragment"
+        android:label="@string/height_orientation_intention">
+        <action
+            android:id="@+id/action_heightOrientationIntention_to_languagesLocation"
+            app:destination="@id/languagesLocationFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/languagesLocationFragment"
+        android:name="com.nathan.camistry.ui.register.LanguagesLocationFragment"
+        android:label="@string/languages_and_location">
+    </fragment>
+
+
+
 </navigation>

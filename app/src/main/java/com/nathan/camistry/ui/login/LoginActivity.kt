@@ -12,6 +12,7 @@ import com.nathan.camistry.R
 import com.nathan.camistry.controller.LoginController
 import com.nathan.camistry.repository.LoginRepository
 import com.nathan.camistry.ui.register.RegisterActivity
+import com.nathan.camistry.ui.register.SetupProfileActivity
 import com.nathan.camistry.util.InputUtil
 
 class LoginActivity : AppCompatActivity() {
@@ -26,6 +27,10 @@ class LoginActivity : AppCompatActivity() {
 
         val loginRepository = LoginRepository()
         val loginController = LoginController(loginRepository)
+
+        //TODO: remove this
+        val intent = Intent(this, SetupProfileActivity::class.java)
+        startActivity(intent)
 
         btnRegister.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)

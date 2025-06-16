@@ -8,12 +8,14 @@
         android:id="@+id/et_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="68dp"
         android:autofillHints="firstName"
-        android:inputType="textPersonName"
         android:hint="@string/name"
-        app:layout_constraintTop_toTopOf="parent"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/et_age"

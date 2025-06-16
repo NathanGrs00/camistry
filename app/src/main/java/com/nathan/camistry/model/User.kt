@@ -1,7 +1,5 @@
 package com.nathan.camistry.model
 
-import android.location.Location
-
 data class User(
     val id: String = "",
     val firstName: String = "",
@@ -11,7 +9,7 @@ data class User(
     val orientation: String? = null,
     val intentions: String? = null,
     val languages: List<String> = emptyList(),
-    val location: Location = Location("unknown"),
+    val location: String = "",
     val jobTitle: String? = null,
     val education: String? = null,
     val bio: String? = null,

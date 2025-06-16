@@ -31,5 +31,9 @@
             android:exported="false"
             android:theme="@style/Theme.Camistry"/>
 
+        <activity android:name=".ui.register.SetupProfileActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Camistry"/>
+
     </application>
 </manifest>

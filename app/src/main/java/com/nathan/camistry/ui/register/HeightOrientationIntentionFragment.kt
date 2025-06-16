@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import com.nathan.camistry.R
 import com.nathan.camistry.viewmodel.UserRegistrationViewModel
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 
 class HeightOrientationIntentionFragment : Fragment() {
     private val viewModel: UserRegistrationViewModel by activityViewModels()
@@ -32,7 +33,7 @@ class HeightOrientationIntentionFragment : Fragment() {
                 orientation = orientation,
                 intentions = intention
             )
-            // findNavController().navigate(R.id.action_heightOrientationIntention_to_nextStep)
+            findNavController().navigate(R.id.action_heightOrientationIntention_to_languagesLocation)
         }
         return view
     }

@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
             blockBasicInfo.findViewById<TextView>(R.id.tv_height).text = "${user.heightCm} cm"
             blockBasicInfo.findViewById<TextView>(R.id.tv_gender).text = user.gender
             blockBasicInfo.findViewById<TextView>(R.id.tv_orientation).text = user.orientation ?: "Not specified"
-            blockBasicInfo.findViewById<TextView>(R.id.tv_location).text = user.location.provider
+            blockBasicInfo.findViewById<TextView>(R.id.tv_location).text = user.location
             blockBasicInfo.findViewById<TextView>(R.id.tv_languages).text = user.languages.joinToString(", ")
 
             blockLifestyle.findViewById<TextView>(R.id.tv_smokes).text = user.smokes ?: "Not specified"
