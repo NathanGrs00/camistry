@@ -5,7 +5,7 @@ import com.nathan.camistry.repository.UserRepository
 
 class UserController(private val userRepository: UserRepository) {
     fun getUser(userId: String, onResult: (User?) -> Unit){
-        return userRepository.getUser(userId, onResult)
+        userRepository.getUser(userId, onResult)
     }
 
     fun updateUser(user: User, onResult: (Boolean) -> Unit) {
