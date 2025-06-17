@@ -7,7 +7,6 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.nathan.camistry.MainActivity
 import com.nathan.camistry.R
 import com.nathan.camistry.controller.LoginController
 import com.nathan.camistry.repository.LoginRepository
@@ -27,10 +26,6 @@ class LoginActivity : AppCompatActivity() {
 
         val loginRepository = LoginRepository()
         val loginController = LoginController(loginRepository)
-
-        //TODO: remove this
-        val intent = Intent(this, SetupProfileActivity::class.java)
-        startActivity(intent)
 
         btnRegister.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
@@ -62,7 +57,7 @@ class LoginActivity : AppCompatActivity() {
                     Toast.makeText(this,
                         getString(R.string.login_successful),
                         Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this, MainActivity::class.java)
+                    val intent = Intent(this, SetupProfileActivity::class.java)
                     startActivity(intent)
                     finish()
                 } else {
