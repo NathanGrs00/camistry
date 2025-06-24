@@ -27,16 +27,16 @@
         android:name="com.nathan.camistry.ui.register.HeightOrientationIntentionFragment"
         android:label="@string/height_orientation_intention">
         <action
-            android:id="@+id/action_heightOrientationIntention_to_languagesLocation"
-            app:destination="@id/languagesLocationFragment" />
+            android:id="@+id/action_heightOrientationIntention_to_languages"
+            app:destination="@id/languagesFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/languagesLocationFragment"
-        android:name="com.nathan.camistry.ui.register.LanguagesLocationFragment"
-        android:label="@string/languages_and_location">
+        android:id="@+id/languagesFragment"
+        android:name="com.nathan.camistry.ui.register.LanguagesFragment"
+        android:label="@string/languages">
         <action
-            android:id="@+id/action_languagesLocation_to_interest"
+            android:id="@+id/action_languages_to_interest"
             app:destination="@id/interestFragment" />
     </fragment>
 

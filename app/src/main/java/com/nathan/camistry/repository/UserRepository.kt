@@ -41,4 +41,16 @@ class UserRepository {
                 onResult(false)
             }
     }
+
+    fun getAllUsers(onResult: (List<User>) -> Unit) {
+        db.collection("users")
+            .get()
+            .addOnSuccessListener { result ->
+                val users = result.toObjects(User::class.java)
+                onResult(users)
+            }
+            .addOnFailureListener {
+                onResult(emptyList())
+            }
+    }
 }
