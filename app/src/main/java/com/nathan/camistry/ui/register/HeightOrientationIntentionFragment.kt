@@ -33,7 +33,7 @@ class HeightOrientationIntentionFragment : Fragment() {
                 orientation = orientation,
                 intentions = intention
             )
-            findNavController().navigate(R.id.action_heightOrientationIntention_to_languagesLocation)
+            findNavController().navigate(R.id.action_heightOrientationIntention_to_languages)
         }
         return view
     }

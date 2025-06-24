@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.location.Location
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.LocationServices
+import com.nathan.camistry.model.UserLocation
 import com.nathan.camistry.repository.UserRepository
 
 class LocationUpdateService(
@@ -26,7 +27,8 @@ class LocationUpdateService(
             location?.let {
                 userRepository.getUser(userId) { user ->
                     user?.let {
-                        val updatedUser = it.copy(location = location)
+                        val userLocation = UserLocation(location.latitude, location.longitude)
+                        val updatedUser = it.copy(location = userLocation)
                         userRepository.updateUser(updatedUser) { /* handle result */ }
                     }
                 }
