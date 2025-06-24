@@ -1,5 +1,6 @@
 package com.nathan.camistry.ui.register
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -46,6 +47,8 @@ class RegisterActivity : AppCompatActivity() {
                     Toast.makeText(this,
                         getString(R.string.registration_successful),
                         Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, SetupProfileActivity::class.java)
+                    startActivity(intent)
                     finish()
                 } else {
                     Toast.makeText(this,

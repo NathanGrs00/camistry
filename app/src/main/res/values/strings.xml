@@ -68,4 +68,14 @@
     <string name="gender">Gender</string>
     <string name="name_and_age">Name and Age</string>
     <string name="education_and_job">Education and Job</string>
+    <string name="height">Height</string>
+    <string name="orientation">Orientation</string>
+    <string name="intention">Intention</string>
+    <string name="languages">Languages</string>
+    <string name="location">Location</string>
+    <string name="interests">Interests</string>
+    <string name="select_location">Select location</string>
+    <string name="languages_and_location">Languages and Location</string>
+    <string name="height_orientation_intention">Height, Orientation and Intentions</string>
+    <string name="enter_your_interests_comma_separated">Enter your interests (comma separated)</string>
 </resources>

@@ -16,5 +16,36 @@
     <fragment
         android:id="@+id/educationJobFragment"
         android:name="com.nathan.camistry.ui.register.JobEducationFragment"
-        android:label="@string/education_and_job" />
+        android:label="@string/education_and_job">
+        <action
+            android:id="@+id/action_educationJob_to_heightOrientationIntention"
+            app:destination="@id/heightOrientationIntentionFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/heightOrientationIntentionFragment"
+        android:name="com.nathan.camistry.ui.register.HeightOrientationIntentionFragment"
+        android:label="@string/height_orientation_intention">
+        <action
+            android:id="@+id/action_heightOrientationIntention_to_languagesLocation"
+            app:destination="@id/languagesLocationFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/languagesLocationFragment"
+        android:name="com.nathan.camistry.ui.register.LanguagesLocationFragment"
+        android:label="@string/languages_and_location">
+        <action
+            android:id="@+id/action_languagesLocation_to_interest"
+            app:destination="@id/interestFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/interestFragment"
+        android:name="com.nathan.camistry.ui.register.InterestFragment"
+        android:label="@string/interests">
+    </fragment>
+
+
+
 </navigation>
