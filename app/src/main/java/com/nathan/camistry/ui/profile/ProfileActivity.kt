@@ -63,6 +63,14 @@ class ProfileActivity : AppCompatActivity() {
             blockLifestyle.findViewById<TextView>(R.id.tv_has_pets).text = user.hasPets ?: "Not specified"
             blockLifestyle.findViewById<TextView>(R.id.tv_wants_children).text = user.wantsChildren ?: "Not specified"
 
+            //TODO: Instead of this being a single string, this should be seperate balloon-like fields.
+            blockInterests.findViewById<TextView>(R.id.tv_interests).text =
+                if (user.interests.isNotEmpty()) {
+                    user.interests.joinToString(", ")
+                } else {
+                    "No interests specified"
+                }
+
             // Add the block view to the root layout.
             rootLayout.addView(leadPhotoView)
             rootLayout.addView(blockBioView)

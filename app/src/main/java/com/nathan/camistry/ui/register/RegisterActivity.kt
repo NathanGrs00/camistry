@@ -49,6 +49,7 @@ class RegisterActivity : AppCompatActivity() {
                         Toast.LENGTH_SHORT).show()
                     val intent = Intent(this, SetupProfileActivity::class.java)
                     startActivity(intent)
+                    finish()
                 } else {
                     Toast.makeText(this,
                         errorMsg ?: getString(R.string.registration_failed),

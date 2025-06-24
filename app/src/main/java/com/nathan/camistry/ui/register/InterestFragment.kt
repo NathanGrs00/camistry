@@ -44,6 +44,7 @@ class InterestFragment : Fragment() {
                 if (success) {
                     val intent = Intent(requireContext(), MainActivity::class.java)
                     startActivity(intent)
+                    activity?.finish()
                 } else {
                     Toast.makeText(requireContext(), "Failed to save profile", Toast.LENGTH_SHORT).show()
                 }
