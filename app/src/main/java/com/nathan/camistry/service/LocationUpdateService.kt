@@ -35,4 +35,19 @@ class LocationUpdateService(
             }
         }
     }
+
+    fun getCurrentLocation(onResult: (Location?) -> Unit) {
+        val fusedLocationClient = LocationServices.getFusedLocationProviderClient(activity)
+        if (ActivityCompat.checkSelfPermission(
+                activity,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            onResult(null)
+            return
+        }
+        fusedLocationClient.lastLocation.addOnSuccessListener { location: android.location.Location? ->
+            onResult(location)
+        }
+    }
 }

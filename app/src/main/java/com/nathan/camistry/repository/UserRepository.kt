@@ -1,6 +1,7 @@
 package com.nathan.camistry.repository
 
 import com.google.firebase.firestore.FirebaseFirestore
+import com.nathan.camistry.model.DiscoverPreferences
 import com.nathan.camistry.model.User
 
 class UserRepository {

@@ -9,9 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
+import com.nathan.camistry.MainActivity
 import com.nathan.camistry.R
 import com.nathan.camistry.model.MenuItem
 import com.nathan.camistry.ui.login.LoginActivity
+import com.nathan.camistry.ui.profile.ProfileActivity
 
 class HamburgerFragment: Fragment() {
     override fun onCreateView(
@@ -39,10 +41,12 @@ class HamburgerFragment: Fragment() {
         menuList.adapter = MenuAdapter(menuItems) { menuItem ->
             when (menuItem.actionId) {
                 R.id.action_profile -> {
-                    // TODO: navigate to Profile
+                    val intent = Intent(requireContext(), ProfileActivity()::class.java)
+                    startActivity(intent)
                 }
                 R.id.action_discover -> {
-                    // TODO: navigate to Discover
+                    val intent = Intent(requireContext(), MainActivity()::class.java)
+                    startActivity(intent)
                 }
                 R.id.action_connections -> {
                     // TODO: navigate to Connections
