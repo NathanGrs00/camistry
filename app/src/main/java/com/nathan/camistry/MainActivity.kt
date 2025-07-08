@@ -18,8 +18,9 @@ import com.nathan.camistry.repository.PreferencesRepository
 import com.nathan.camistry.repository.UserRepository
 import com.nathan.camistry.service.CoordinatesToLocationString
 import com.nathan.camistry.service.LocationUpdateService
+import com.nathan.camistry.ui.overlay.OverlayFragment
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), OverlayFragment.OverlayActionListener {
     private var matchPool: List<User> = emptyList()
     private var currentIndex = 0
     private val userRepository = UserRepository()
@@ -129,6 +130,14 @@ class MainActivity : AppCompatActivity() {
         rootLayout.addView(blockBasicInfo)
         rootLayout.addView(blockInterests)
         rootLayout.addView(blockLifestyle)
+    }
+
+    override fun onLike() {
+        onLikeOrPass()
+    }
+
+    override fun onDislike() {
+        onLikeOrPass()
     }
 
     // Call this when user likes or passes
