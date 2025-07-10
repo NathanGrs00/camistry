@@ -11,6 +11,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
+import com.nathan.camistry.controller.ActionController
 import com.nathan.camistry.controller.PreferencesController
 import com.nathan.camistry.controller.UserController
 import com.nathan.camistry.model.User
@@ -24,6 +25,7 @@ class MainActivity : AppCompatActivity(), OverlayFragment.OverlayActionListener 
     private var matchPool: List<User> = emptyList()
     private var currentIndex = 0
     private val userRepository = UserRepository()
+    private val actionController = ActionController()
     private val userId get() = FirebaseAuth.getInstance().uid
     private lateinit var locationUpdateService: LocationUpdateService
 
@@ -133,15 +135,31 @@ class MainActivity : AppCompatActivity(), OverlayFragment.OverlayActionListener 
     }
 
     override fun onLike() {
-        onLikeOrPass()
+        handleLikeOrPass(isLike = true)
     }
 
     override fun onDislike() {
-        onLikeOrPass()
+        handleLikeOrPass(isLike = false)
     }
 
-    // Call this when user likes or passes
-    private fun onLikeOrPass() {
+    private fun handleLikeOrPass(isLike: Boolean) {
+        if (userId == null || matchPool.isEmpty()) return
+        val targetUser = matchPool[currentIndex]
+        if (isLike) {
+            actionController.likeUser(userId!!, targetUser.id) { isMatch ->
+                if (isMatch) {
+                    // TODO: Show match dialog
+                }
+                moveToNextUser()
+            }
+        } else {
+            actionController.passUser(userId!!, targetUser.id) {
+                moveToNextUser()
+            }
+        }
+    }
+
+    private fun moveToNextUser() {
         if (currentIndex < matchPool.size - 1) {
             currentIndex++
             showUser(matchPool[currentIndex])
