@@ -148,7 +148,7 @@ class MainActivity : AppCompatActivity(), OverlayFragment.OverlayActionListener 
         if (isLike) {
             actionController.likeUser(userId!!, targetUser.id) { isMatch ->
                 if (isMatch) {
-                    // TODO: Show match dialog
+                    showMatchDialog(targetUser.firstName)
                 }
                 moveToNextUser()
             }
@@ -167,4 +167,19 @@ class MainActivity : AppCompatActivity(), OverlayFragment.OverlayActionListener 
             // TODO: Show "no more users" message
         }
     }
+
+    private fun showMatchDialog(matchedUserName: String) {
+        androidx.appcompat.app.AlertDialog.Builder(this)
+            .setTitle("It's a Match!")
+            .setMessage("You and $matchedUserName have liked each other.")
+            .setPositiveButton("Start Chat") { dialog, _ ->
+                // TODO: Navigate to chat screen
+                dialog.dismiss()
+            }
+            .setNegativeButton("Close") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
+    }
 }
+
