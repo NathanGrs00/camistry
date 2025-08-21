@@ -9,7 +9,7 @@ data class User(
     val orientation: String? = null,
     val intentions: String? = null,
     val languages: List<String> = emptyList(),
-    val location: String = "",
+    val location: UserLocation = UserLocation(),
     val jobTitle: String? = null,
     val education: String? = null,
     val bio: String? = null,

@@ -10,6 +10,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.nathan.camistry.R
 import com.nathan.camistry.controller.UserController
 import com.nathan.camistry.repository.UserRepository
+import com.nathan.camistry.service.CoordinatesToLocationString
 
 class ProfileActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,7 +56,12 @@ class ProfileActivity : AppCompatActivity() {
             blockBasicInfo.findViewById<TextView>(R.id.tv_height).text = "${user.heightCm} cm"
             blockBasicInfo.findViewById<TextView>(R.id.tv_gender).text = user.gender
             blockBasicInfo.findViewById<TextView>(R.id.tv_orientation).text = user.orientation ?: "Not specified"
-            blockBasicInfo.findViewById<TextView>(R.id.tv_location).text = user.location
+            val cityName = CoordinatesToLocationString().getCityName(
+                this,
+                user.location.latitude,
+                user.location.longitude
+            )
+            blockBasicInfo.findViewById<TextView>(R.id.tv_location).text = cityName
             blockBasicInfo.findViewById<TextView>(R.id.tv_languages).text = user.languages.joinToString(", ")
 
             blockLifestyle.findViewById<TextView>(R.id.tv_smokes).text = user.smokes ?: "Not specified"

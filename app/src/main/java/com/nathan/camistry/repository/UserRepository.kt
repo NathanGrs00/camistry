@@ -1,6 +1,7 @@
 package com.nathan.camistry.repository
 
 import com.google.firebase.firestore.FirebaseFirestore
+import com.nathan.camistry.model.DiscoverPreferences
 import com.nathan.camistry.model.User
 
 class UserRepository {
@@ -39,6 +40,18 @@ class UserRepository {
             }
             .addOnFailureListener {
                 onResult(false)
+            }
+    }
+
+    fun getAllUsers(onResult: (List<User>) -> Unit) {
+        db.collection("users")
+            .get()
+            .addOnSuccessListener { result ->
+                val users = result.toObjects(User::class.java)
+                onResult(users)
+            }
+            .addOnFailureListener {
+                onResult(emptyList())
             }
     }
 }
