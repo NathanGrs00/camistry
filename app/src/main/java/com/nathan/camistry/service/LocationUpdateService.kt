@@ -4,6 +4,7 @@ import android.Manifest
 import android.app.Activity
 import android.content.pm.PackageManager
 import android.location.Location
+import android.util.Log
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.LocationServices
 import com.nathan.camistry.model.UserLocation
@@ -29,7 +30,12 @@ class LocationUpdateService(
                     user?.let {
                         val userLocation = UserLocation(location.latitude, location.longitude)
                         val updatedUser = it.copy(location = userLocation)
-                        userRepository.updateUser(updatedUser) { /* handle result */ }
+                        userRepository.updateUser(updatedUser) { success ->
+                            if (!success) {
+                                Log.e("LocationUpdateService",
+                                    "Failed to update user location for userId: $userId")
+                            }
+                        }
                     }
                 }
             }

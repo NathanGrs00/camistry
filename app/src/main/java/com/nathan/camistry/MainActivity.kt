@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity(), OverlayFragment.OverlayActionListener 
                 arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 100
             )
         } else {
-            locationUpdateService.updateUserLocation(userId!!)
+            userId?.let { locationUpdateService.updateUserLocation(it) }
         }
 
         val topbarHeight = resources.getDimensionPixelSize(R.dimen.top_bar_height)

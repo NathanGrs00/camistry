@@ -41,11 +41,11 @@ class HamburgerFragment: Fragment() {
         menuList.adapter = MenuAdapter(menuItems) { menuItem ->
             when (menuItem.actionId) {
                 R.id.action_profile -> {
-                    val intent = Intent(requireContext(), ProfileActivity()::class.java)
+                    val intent = Intent(requireContext(), ProfileActivity::class.java)
                     startActivity(intent)
                 }
                 R.id.action_discover -> {
-                    val intent = Intent(requireContext(), MainActivity()::class.java)
+                    val intent = Intent(requireContext(), MainActivity::class.java)
                     startActivity(intent)
                 }
                 R.id.action_connections -> {
