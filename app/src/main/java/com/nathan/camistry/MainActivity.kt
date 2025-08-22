@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.nathan.camistry.controller.ActionController
@@ -169,8 +170,8 @@ class MainActivity : AppCompatActivity(), OverlayFragment.OverlayActionListener 
     }
 
     private fun showMatchDialog(matchedUserName: String) {
-        androidx.appcompat.app.AlertDialog.Builder(this)
-            .setTitle("It's a Match!")
+        AlertDialog.Builder(this)
+            .setTitle("You have a new match!")
             .setMessage("You and $matchedUserName have liked each other.")
             .setPositiveButton("Start Chat") { dialog, _ ->
                 // TODO: Navigate to chat screen
