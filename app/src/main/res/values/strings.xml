@@ -78,4 +78,6 @@
     <string name="languages_and_location">Languages and Location</string>
     <string name="height_orientation_intention">Height, Orientation and Intentions</string>
     <string name="enter_your_interests_comma_separated">Enter your interests (comma separated)</string>
+    <string name="you_and_your_match_have_liked_each_other">You and your match have liked each other.</string>
+    <string name="you_have_a_new_match">You have a new match!</string>
 </resources>
