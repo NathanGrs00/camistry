@@ -27,7 +27,7 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_user_placeholder"
+            android:src="@drawable/ic_user_profile"
             android:layout_marginEnd="16dp"/>
 
         <ImageView
@@ -35,7 +35,7 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_user_placeholder"/>
+            android:src="@drawable/ic_user_profile"/>
     </LinearLayout>
 
     <TextView
