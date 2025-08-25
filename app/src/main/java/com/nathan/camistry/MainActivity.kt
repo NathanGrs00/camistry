@@ -149,7 +149,12 @@ class MainActivity : AppCompatActivity(), OverlayFragment.OverlayActionListener 
         if (isLike) {
             actionController.likeUser(userId!!, targetUser.id) { isMatch ->
                 if (isMatch) {
-                    showMatchDialog(targetUser.firstName)
+                    // Fetch current user photo
+                    userRepository.getUser(userId!!) { currentUser ->
+                        val matchedUserPhoto = targetUser.photos.firstOrNull() ?: ""
+                        val currentUserPhoto = currentUser?.photos?.firstOrNull() ?: ""
+                        showMatchDialog(targetUser.firstName, matchedUserPhoto, currentUserPhoto)
+                    }
                 }
                 moveToNextUser()
             }
@@ -169,10 +174,24 @@ class MainActivity : AppCompatActivity(), OverlayFragment.OverlayActionListener 
         }
     }
 
-    private fun showMatchDialog(matchedUserName: String) {
+    private fun showMatchDialog(matchedUserName: String, matchedUserPhoto: String, currentUserPhoto: String) {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_match, null)
+
+        dialogView.findViewById<TextView>(R.id.tv_match_message).text =
+            "You and $matchedUserName have liked each other."
+
+        Glide.with(this)
+            .load(currentUserPhoto)
+            .placeholder(R.drawable.ic_user_profile)
+            .into(dialogView.findViewById(R.id.iv_user1))
+
+        Glide.with(this)
+            .load(matchedUserPhoto)
+            .placeholder(R.drawable.ic_user_profile)
+            .into(dialogView.findViewById(R.id.iv_user2))
+
         AlertDialog.Builder(this)
-            .setTitle("You have a new match!")
-            .setMessage("You and $matchedUserName have liked each other.")
+            .setView(dialogView)
             .setPositiveButton("Start Chat") { dialog, _ ->
                 // TODO: Navigate to chat screen
                 dialog.dismiss()
