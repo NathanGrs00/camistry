@@ -170,7 +170,11 @@ class MainActivity : AppCompatActivity(), OverlayFragment.OverlayActionListener 
             currentIndex++
             showUser(matchPool[currentIndex])
         } else {
-            // TODO: Show "no more users" message
+            AlertDialog.Builder(this)
+                .setTitle("No More Users")
+                .setMessage("You've reached the end of the match pool. Please check back later for new users.")
+                .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
+                .show()
         }
     }
 
