@@ -95,7 +95,18 @@ class MainActivity : AppCompatActivity(), OverlayFragment.OverlayActionListener 
                     }
                 }
             } else {
-                // TODO: Handle the case where location is not available
+                AlertDialog.Builder(this)
+                    .setTitle("Location Unavailable")
+                    .setMessage("We couldn't access your location. Please enable location services and try again.")
+                    .setPositiveButton("Retry") { dialog, _ ->
+                        // Optionally retry location fetch
+                        userId?.let { locationUpdateService.getCurrentLocation { /* handle again */ } }
+                        dialog.dismiss()
+                    }
+                    .setNegativeButton("Exit") { _, _ ->
+                        finish()
+                    }
+                    .show()
             }
         }
     }
