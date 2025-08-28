@@ -81,7 +81,14 @@ class MainActivity : AppCompatActivity(), OverlayFragment.OverlayActionListener 
                 val prefController = PreferencesController(prefRepository)
                 prefController.getPreferences(userId!!) { preferences ->
                     if (preferences == null) {
-                        // TODO: Handle case where preferences are not set
+                        AlertDialog.Builder(this)
+                            .setTitle("Preferences Not Set")
+                            .setMessage("Please set your preferences to start discovering matches.")
+                            .setPositiveButton("Set Preferences") { _, _ ->
+                                // TODO: Navigate to preferences setup activity/fragment
+                            }
+                            .setNegativeButton("Cancel") { dialog, _ -> dialog.dismiss() }
+                            .show()
                         return@getPreferences
                     }
                     userController.getFilteredUsers(preferences, currentUserLocation) { pool ->
