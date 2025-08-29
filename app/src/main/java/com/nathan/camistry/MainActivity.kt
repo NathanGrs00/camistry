@@ -74,6 +74,22 @@ class MainActivity : AppCompatActivity(), OverlayFragment.OverlayActionListener 
         blockInterests = inflater.inflate(R.layout.content_interests, rootLayout, false)
         blockLifestyle = inflater.inflate(R.layout.content_lifestyle, rootLayout, false)
 
+        if (userId == null) return
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 100
+            )
+        } else {
+            fetchLocationAndLoadMatches()
+        }
+    }
+
+    private fun fetchLocationAndLoadMatches() {
         locationUpdateService.getCurrentLocation { currentUserLocation ->
             if (currentUserLocation != null) {
                 val userController = UserController(userRepository)
@@ -106,8 +122,7 @@ class MainActivity : AppCompatActivity(), OverlayFragment.OverlayActionListener 
                     .setTitle("Location Unavailable")
                     .setMessage("We couldn't access your location. Please enable location services and try again.")
                     .setPositiveButton("Retry") { dialog, _ ->
-                        // Optionally retry location fetch
-                        userId?.let { locationUpdateService.getCurrentLocation { /* handle again */ } }
+                        fetchLocationAndLoadMatches()
                         dialog.dismiss()
                     }
                     .setNegativeButton("Exit") { _, _ ->
