@@ -113,7 +113,11 @@ class MainActivity : AppCompatActivity(), OverlayFragment.OverlayActionListener 
                             currentIndex = 0
                             showUser(matchPool[currentIndex])
                         } else {
-                            // TODO: Display a message indicating no users found
+                            AlertDialog.Builder(this)
+                                .setTitle("No Users Found")
+                                .setMessage("No matches were found based on your preferences. Try updating your preferences or check back later.")
+                                .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
+                                .show()
                         }
                     }
                 }
