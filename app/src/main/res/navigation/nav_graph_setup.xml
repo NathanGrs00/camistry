@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph_registration"
+    app:startDestination="@id/nameAgeFragment">
+
+    <fragment
+        android:id="@+id/nameAgeFragment"
+        android:name="com.nathan.camistry.ui.register.NameAgeGenderFragment"
+        android:label="@string/name_and_age">
+        <action
+            android:id="@+id/action_nameAge_to_educationJob"
+            app:destination="@id/educationJobFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/educationJobFragment"
+        android:name="com.nathan.camistry.ui.register.JobEducationFragment"
+        android:label="@string/education_and_job">
+        <action
+            android:id="@+id/action_educationJob_to_heightOrientationIntention"
+            app:destination="@id/heightOrientationIntentionFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/heightOrientationIntentionFragment"
+        android:name="com.nathan.camistry.ui.register.HeightOrientationIntentionFragment"
+        android:label="@string/height_orientation_intention">
+        <action
+            android:id="@+id/action_heightOrientationIntention_to_languages"
+            app:destination="@id/languagesFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/languagesFragment"
+        android:name="com.nathan.camistry.ui.register.LanguagesFragment"
+        android:label="@string/languages">
+        <action
+            android:id="@+id/action_languages_to_interest"
+            app:destination="@id/interestFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/interestFragment"
+        android:name="com.nathan.camistry.ui.register.InterestFragment"
+        android:label="@string/interests">
+    </fragment>
+
+
+
+</navigation>

@@ -1,6 +1,7 @@
 package com.nathan.camistry.ui.topbar
 
 import android.animation.ObjectAnimator
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import android.widget.ImageView
 import androidx.core.animation.doOnEnd
 import androidx.fragment.app.Fragment
 import com.nathan.camistry.R
+import com.nathan.camistry.ui.profile.ProfileActivity
 
 class TopbarFragment : Fragment() {
 
@@ -26,7 +28,8 @@ class TopbarFragment : Fragment() {
         val ivMenu = view.findViewById<ImageView>(R.id.iv_menu)
 
         ivProfile.setOnClickListener {
-            //TODO: Send to profile page
+            val intent = Intent(requireContext(), ProfileActivity::class.java)
+            startActivity(intent)
         }
 
         // If the user clicks on the menu icon, show the hamburger menu and the blocker

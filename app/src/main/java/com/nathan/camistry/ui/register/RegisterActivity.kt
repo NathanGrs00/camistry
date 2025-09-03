@@ -1,13 +1,16 @@
 package com.nathan.camistry.ui.register
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.nathan.camistry.R
 import com.nathan.camistry.controller.RegisterController
 import com.nathan.camistry.repository.RegisterRepository
+import com.nathan.camistry.ui.login.LoginActivity
 import com.nathan.camistry.util.InputUtil
 
 class RegisterActivity : AppCompatActivity() {
@@ -20,6 +23,13 @@ class RegisterActivity : AppCompatActivity() {
         val btnRegister = findViewById<Button>(R.id.btn_register)
         val registerRepository = RegisterRepository()
         val registerController = RegisterController(registerRepository)
+
+        val tvSignup = findViewById<TextView>(R.id.tv_signup)
+        tvSignup.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
         btnRegister.setOnClickListener {
             etEmail.error = null
@@ -46,6 +56,8 @@ class RegisterActivity : AppCompatActivity() {
                     Toast.makeText(this,
                         getString(R.string.registration_successful),
                         Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, SetupProfileActivity::class.java)
+                    startActivity(intent)
                     finish()
                 } else {
                     Toast.makeText(this,

@@ -60,4 +60,24 @@
     <string name="login_failed">Login failed</string>
     <string name="registration_successful">Registration successful</string>
     <string name="registration_failed">Registration failed</string>
+    <string name="education">Education</string>
+    <string name="job_title">Job Title</string>
+    <string name="next">Next</string>
+    <string name="name">Name</string>
+    <string name="age">Age</string>
+    <string name="gender">Gender</string>
+    <string name="name_and_age">Name and Age</string>
+    <string name="education_and_job">Education and Job</string>
+    <string name="height">Height</string>
+    <string name="orientation">Orientation</string>
+    <string name="intention">Intention</string>
+    <string name="languages">Languages</string>
+    <string name="location">Location</string>
+    <string name="interests">Interests</string>
+    <string name="select_location">Select location</string>
+    <string name="languages_and_location">Languages and Location</string>
+    <string name="height_orientation_intention">Height, Orientation and Intentions</string>
+    <string name="enter_your_interests_comma_separated">Enter your interests (comma separated)</string>
+    <string name="you_and_your_match_have_liked_each_other">You and your match have liked each other.</string>
+    <string name="you_have_a_new_match">You have a new match!</string>
 </resources>

@@ -1,23 +1,72 @@
 package com.nathan.camistry
 
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import android.Manifest
+import android.content.pm.PackageManager
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AlertDialog
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
+import com.nathan.camistry.controller.ActionController
+import com.nathan.camistry.controller.PreferencesController
 import com.nathan.camistry.controller.UserController
+import com.nathan.camistry.model.User
+import com.nathan.camistry.repository.PreferencesRepository
 import com.nathan.camistry.repository.UserRepository
+import com.nathan.camistry.service.CoordinatesToLocationString
+import com.nathan.camistry.service.LocationUpdateService
+import com.nathan.camistry.ui.overlay.OverlayFragment
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), OverlayFragment.OverlayActionListener {
+    private var matchPool: List<User> = emptyList()
+    private var currentIndex = 0
+    private var currentUser: User? = null
+    private val userRepository = UserRepository()
+    private val actionController = ActionController()
+    private val userId get() = FirebaseAuth.getInstance().uid
+    private lateinit var locationUpdateService: LocationUpdateService
+
+    private lateinit var leadPhotoView: View
+    private lateinit var blockBioView: View
+    private lateinit var blockBasicInfo: View
+    private lateinit var blockInterests: View
+    private lateinit var blockLifestyle: View
+    private lateinit var rootLayout: LinearLayout
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        locationUpdateService = LocationUpdateService(this, userRepository)
+
+        if (userId == null) return
+
+        if (userId != null) {
+            userRepository.getUser(userId!!) { user ->
+                currentUser = user
+            }
+        }
+
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 100
+            )
+        } else {
+            userId?.let { locationUpdateService.updateUserLocation(it) }
+        }
+
         val topbarHeight = resources.getDimensionPixelSize(R.dimen.top_bar_height)
-        // Find the linear layout, where all the blocks will go in.
-        val rootLayout = findViewById<LinearLayout>(R.id.ll_main_content)
+        rootLayout = findViewById(R.id.ll_main_content)
         rootLayout.setPadding(
             rootLayout.paddingLeft,
             topbarHeight,
@@ -25,72 +74,177 @@ class MainActivity : AppCompatActivity() {
             rootLayout.paddingBottom
         )
 
-        // Make an inflater to show the blocks
         val inflater = LayoutInflater.from(this)
+        leadPhotoView = inflater.inflate(R.layout.content_lead, rootLayout, false)
+        blockBioView = inflater.inflate(R.layout.content_bio, rootLayout, false)
+        blockBasicInfo = inflater.inflate(R.layout.content_info, rootLayout, false)
+        blockInterests = inflater.inflate(R.layout.content_interests, rootLayout, false)
+        blockLifestyle = inflater.inflate(R.layout.content_lifestyle, rootLayout, false)
 
-        // Use the inflater to create a block view for the first photo and bio.
-        val leadPhotoView = inflater.inflate(R.layout.content_lead, rootLayout, false)
-        val blockBioView = inflater.inflate(R.layout.content_bio, rootLayout, false)
-        val blockBasicInfo = inflater.inflate(R.layout.content_info, rootLayout, false)
-        val blockInterests = inflater.inflate(R.layout.content_interests, rootLayout, false)
-        val blockLifestyle = inflater.inflate(R.layout.content_lifestyle, rootLayout, false)
-
-        val userId = FirebaseAuth.getInstance().uid ?: return
-        val userRepository = UserRepository()
-        val userController = UserController(userRepository)
-
-        userController.getUser(userId) { user ->
-            if (user == null) return@getUser
-
-            user.photos.firstOrNull()?.let { photoUrl ->
-                Glide.with(this)
-                    .load(photoUrl)
-                    .into(leadPhotoView.findViewById(R.id.iv_picture_lead))
-            }
-
-            leadPhotoView.findViewById<TextView>(R.id.tv_firstname).text = user.firstName
-            leadPhotoView.findViewById<TextView>(R.id.tv_age).text = user.age.toString()
-            blockBioView.findViewById<TextView>(R.id.tv_bio).text = user.bio
-            blockBasicInfo.findViewById<TextView>(R.id.tv_height).text = "${user.heightCm} cm"
-            blockBasicInfo.findViewById<TextView>(R.id.tv_gender).text = user.gender
-            blockBasicInfo.findViewById<TextView>(R.id.tv_orientation).text = user.orientation ?: "Not specified"
-            blockBasicInfo.findViewById<TextView>(R.id.tv_location).text = user.location.provider
-            blockBasicInfo.findViewById<TextView>(R.id.tv_languages).text = user.languages.joinToString(", ")
-
-            blockLifestyle.findViewById<TextView>(R.id.tv_smokes).text = user.smokes ?: "Not specified"
-            blockLifestyle.findViewById<TextView>(R.id.tv_drinks).text = user.drinks ?: "Not specified"
-            blockLifestyle.findViewById<TextView>(R.id.tv_has_pets).text = user.hasPets ?: "Not specified"
-            blockLifestyle.findViewById<TextView>(R.id.tv_wants_children).text = user.wantsChildren ?: "Not specified"
-
-            // Add the block view to the root layout.
-            rootLayout.addView(leadPhotoView)
-            rootLayout.addView(blockBioView)
-            rootLayout.addView(blockBasicInfo)
-            rootLayout.addView(blockInterests)
-            rootLayout.addView(blockLifestyle)
+        if (userId == null) return
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 100
+            )
+        } else {
+            fetchLocationAndLoadMatches()
         }
+    }
 
-//        val dummyUser = PublicProfile(
-//            id = "12345",
-//            firstName = "Bob",
-//            age = 25,
-//            bio = "Hello, my name is Bob.",
-//            heightCm = 184,
-//            gender = "Male",
-//            orientation = "Straight",
-//            intentions = "Long-term relationship",
-//            languages = listOf("English", "Spanish"),
-//            location = Location("New York"),
-//            jobTitle = "Mechanical Engineer",
-//            education = "Bachelor's in Mechanical Engineering",
-//            interests = listOf("Hiking", "Cooking", "Reading"),
-//            smokes = "No, but I don't mind if you do",
-//            drinks = "Socially",
-//            hasPets = "No, but I love animals",
-//            wantsChildren = "I don't know yet",
-//            photos = listOf("android.resource://com.nathan.camistry/drawable/dummyphoto"),
-//            isVerified = true,
-//            isOnline = true,
-//        )
+    private fun fetchLocationAndLoadMatches() {
+        locationUpdateService.getCurrentLocation { currentUserLocation ->
+            if (currentUserLocation != null) {
+                val userController = UserController(userRepository)
+                val prefRepository = PreferencesRepository()
+                val prefController = PreferencesController(prefRepository)
+                prefController.getPreferences(userId!!) { preferences ->
+                    if (preferences == null) {
+                        AlertDialog.Builder(this)
+                            .setTitle("Preferences Not Set")
+                            .setMessage("Please set your preferences to start discovering matches.")
+                            .setPositiveButton("Set Preferences") { _, _ ->
+                                // TODO: Navigate to preferences setup activity/fragment
+                            }
+                            .setNegativeButton("Cancel") { dialog, _ -> dialog.dismiss() }
+                            .show()
+                        return@getPreferences
+                    }
+                    userController.getFilteredUsers(preferences, currentUserLocation) { pool ->
+                        if (pool.isNotEmpty()) {
+                            matchPool = pool
+                            currentIndex = 0
+                            showUser(matchPool[currentIndex])
+                        } else {
+                            AlertDialog.Builder(this)
+                                .setTitle("No Users Found")
+                                .setMessage("No matches were found based on your preferences. Try updating your preferences or check back later.")
+                                .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
+                                .show()
+                        }
+                    }
+                }
+            } else {
+                AlertDialog.Builder(this)
+                    .setTitle("Location Unavailable")
+                    .setMessage("We couldn't access your location. Please enable location services and try again.")
+                    .setPositiveButton("Retry") { dialog, _ ->
+                        fetchLocationAndLoadMatches()
+                        dialog.dismiss()
+                    }
+                    .setNegativeButton("Exit") { _, _ ->
+                        finish()
+                    }
+                    .show()
+            }
+        }
+    }
+
+    private fun showUser(user: User) {
+        user.photos.firstOrNull()?.let { photoUrl ->
+            Glide.with(this)
+                .load(photoUrl)
+                .into(leadPhotoView.findViewById(R.id.iv_picture_lead))
+        }
+        leadPhotoView.findViewById<TextView>(R.id.tv_firstname).text = user.firstName
+        leadPhotoView.findViewById<TextView>(R.id.tv_age).text = user.age.toString()
+        blockBioView.findViewById<TextView>(R.id.tv_bio).text = user.bio
+        blockBasicInfo.findViewById<TextView>(R.id.tv_height).text = "${user.heightCm} cm"
+        blockBasicInfo.findViewById<TextView>(R.id.tv_gender).text = user.gender
+        blockBasicInfo.findViewById<TextView>(R.id.tv_orientation).text = user.orientation ?: "Not specified"
+        val cityName = CoordinatesToLocationString().getCityName(
+            this,
+            user.location.latitude,
+            user.location.longitude
+        )
+        blockBasicInfo.findViewById<TextView>(R.id.tv_location).text = cityName
+        blockBasicInfo.findViewById<TextView>(R.id.tv_languages).text = user.languages.joinToString(", ")
+        blockLifestyle.findViewById<TextView>(R.id.tv_smokes).text = user.smokes ?: "Not specified"
+        blockLifestyle.findViewById<TextView>(R.id.tv_drinks).text = user.drinks ?: "Not specified"
+        blockLifestyle.findViewById<TextView>(R.id.tv_has_pets).text = user.hasPets ?: "Not specified"
+        blockLifestyle.findViewById<TextView>(R.id.tv_wants_children).text = user.wantsChildren ?: "Not specified"
+        blockInterests.findViewById<TextView>(R.id.tv_interests).text =
+            if (user.interests.isNotEmpty()) user.interests.joinToString(", ")
+            else "No interests specified"
+
+        rootLayout.removeAllViews()
+        rootLayout.addView(leadPhotoView)
+        rootLayout.addView(blockBioView)
+        rootLayout.addView(blockBasicInfo)
+        rootLayout.addView(blockInterests)
+        rootLayout.addView(blockLifestyle)
+    }
+
+    override fun onLike() {
+        handleLikeOrPass(isLike = true)
+    }
+
+    override fun onDislike() {
+        handleLikeOrPass(isLike = false)
+    }
+
+    private fun handleLikeOrPass(isLike: Boolean) {
+        if (userId == null || matchPool.isEmpty()) return
+        val targetUser = matchPool[currentIndex]
+        if (isLike) {
+            actionController.likeUser(userId!!, targetUser.id) { isMatch ->
+                if (isMatch) {
+                    val matchedUserPhoto = targetUser.photos.firstOrNull() ?: ""
+                    val currentUserPhoto = currentUser?.photos?.firstOrNull() ?: ""
+                    showMatchDialog(targetUser.firstName, matchedUserPhoto, currentUserPhoto)
+                }
+                moveToNextUser()
+            }
+        } else {
+            actionController.passUser(userId!!, targetUser.id) {
+                moveToNextUser()
+            }
+        }
+    }
+
+    private fun moveToNextUser() {
+        if (currentIndex < matchPool.size - 1) {
+            currentIndex++
+            showUser(matchPool[currentIndex])
+        } else {
+            AlertDialog.Builder(this)
+                .setTitle("No More Users")
+                .setMessage("You've reached the end of the match pool. Please check back later for new users.")
+                .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
+                .show()
+        }
+    }
+
+    private fun showMatchDialog(matchedUserName: String, matchedUserPhoto: String, currentUserPhoto: String) {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_match, null)
+
+        dialogView.findViewById<TextView>(R.id.tv_match_message).text =
+            "You and $matchedUserName have liked each other."
+
+        Glide.with(this)
+            .load(currentUserPhoto)
+            .placeholder(R.drawable.ic_user_profile)
+            .into(dialogView.findViewById(R.id.iv_user1))
+
+        Glide.with(this)
+            .load(matchedUserPhoto)
+            .placeholder(R.drawable.ic_user_profile)
+            .into(dialogView.findViewById(R.id.iv_user2))
+
+        AlertDialog.Builder(this)
+            .setView(dialogView)
+            .setPositiveButton("Start Chat") { dialog, _ ->
+                // TODO: Navigate to chat screen
+                dialog.dismiss()
+            }
+            .setNegativeButton("Close") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
     }
 }
+

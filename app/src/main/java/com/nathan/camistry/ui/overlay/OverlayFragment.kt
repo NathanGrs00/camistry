@@ -1,5 +1,6 @@
 package com.nathan.camistry.ui.overlay
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,21 @@ import androidx.fragment.app.Fragment
 import com.nathan.camistry.R
 
 class OverlayFragment : Fragment() {
+
+    interface OverlayActionListener {
+        fun onLike()
+        fun onDislike()
+    }
+
+    private var actionListener: OverlayActionListener? = null
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is OverlayActionListener) {
+            actionListener = context
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,11 +49,11 @@ class OverlayFragment : Fragment() {
         btnDislike.setCompoundDrawablesRelative(iconDislike, null, null, null)
 
         btnLike.setOnClickListener {
-            //TODO: Handle like button click
+            actionListener?.onLike()
         }
 
         btnDislike.setOnClickListener {
-            // TODO: Handle dislike button click
+            actionListener?.onDislike()
         }
     }
 }

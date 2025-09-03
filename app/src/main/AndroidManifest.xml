@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -28,6 +30,14 @@
         </activity>
 
         <activity android:name=".ui.register.RegisterActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Camistry"/>
+
+        <activity android:name=".ui.register.SetupProfileActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Camistry"/>
+
+        <activity android:name=".ui.profile.ProfileActivity"
             android:exported="false"
             android:theme="@style/Theme.Camistry"/>
 
