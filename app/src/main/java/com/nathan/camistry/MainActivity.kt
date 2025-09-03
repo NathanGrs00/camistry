@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.nathan.camistry.controller.ActionController
@@ -24,6 +25,7 @@ import com.nathan.camistry.ui.overlay.OverlayFragment
 class MainActivity : AppCompatActivity(), OverlayFragment.OverlayActionListener {
     private var matchPool: List<User> = emptyList()
     private var currentIndex = 0
+    private var currentUser: User? = null
     private val userRepository = UserRepository()
     private val actionController = ActionController()
     private val userId get() = FirebaseAuth.getInstance().uid
@@ -43,6 +45,12 @@ class MainActivity : AppCompatActivity(), OverlayFragment.OverlayActionListener 
         locationUpdateService = LocationUpdateService(this, userRepository)
 
         if (userId == null) return
+
+        if (userId != null) {
+            userRepository.getUser(userId!!) { user ->
+                currentUser = user
+            }
+        }
 
         if (ActivityCompat.checkSelfPermission(
                 this,
@@ -73,6 +81,22 @@ class MainActivity : AppCompatActivity(), OverlayFragment.OverlayActionListener 
         blockInterests = inflater.inflate(R.layout.content_interests, rootLayout, false)
         blockLifestyle = inflater.inflate(R.layout.content_lifestyle, rootLayout, false)
 
+        if (userId == null) return
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 100
+            )
+        } else {
+            fetchLocationAndLoadMatches()
+        }
+    }
+
+    private fun fetchLocationAndLoadMatches() {
         locationUpdateService.getCurrentLocation { currentUserLocation ->
             if (currentUserLocation != null) {
                 val userController = UserController(userRepository)
@@ -80,7 +104,14 @@ class MainActivity : AppCompatActivity(), OverlayFragment.OverlayActionListener 
                 val prefController = PreferencesController(prefRepository)
                 prefController.getPreferences(userId!!) { preferences ->
                     if (preferences == null) {
-                        // TODO: Handle case where preferences are not set
+                        AlertDialog.Builder(this)
+                            .setTitle("Preferences Not Set")
+                            .setMessage("Please set your preferences to start discovering matches.")
+                            .setPositiveButton("Set Preferences") { _, _ ->
+                                // TODO: Navigate to preferences setup activity/fragment
+                            }
+                            .setNegativeButton("Cancel") { dialog, _ -> dialog.dismiss() }
+                            .show()
                         return@getPreferences
                     }
                     userController.getFilteredUsers(preferences, currentUserLocation) { pool ->
@@ -89,12 +120,26 @@ class MainActivity : AppCompatActivity(), OverlayFragment.OverlayActionListener 
                             currentIndex = 0
                             showUser(matchPool[currentIndex])
                         } else {
-                            // TODO: Display a message indicating no users found
+                            AlertDialog.Builder(this)
+                                .setTitle("No Users Found")
+                                .setMessage("No matches were found based on your preferences. Try updating your preferences or check back later.")
+                                .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
+                                .show()
                         }
                     }
                 }
             } else {
-                // TODO: Handle the case where location is not available
+                AlertDialog.Builder(this)
+                    .setTitle("Location Unavailable")
+                    .setMessage("We couldn't access your location. Please enable location services and try again.")
+                    .setPositiveButton("Retry") { dialog, _ ->
+                        fetchLocationAndLoadMatches()
+                        dialog.dismiss()
+                    }
+                    .setNegativeButton("Exit") { _, _ ->
+                        finish()
+                    }
+                    .show()
             }
         }
     }
@@ -148,7 +193,9 @@ class MainActivity : AppCompatActivity(), OverlayFragment.OverlayActionListener 
         if (isLike) {
             actionController.likeUser(userId!!, targetUser.id) { isMatch ->
                 if (isMatch) {
-                    showMatchDialog(targetUser.firstName)
+                    val matchedUserPhoto = targetUser.photos.firstOrNull() ?: ""
+                    val currentUserPhoto = currentUser?.photos?.firstOrNull() ?: ""
+                    showMatchDialog(targetUser.firstName, matchedUserPhoto, currentUserPhoto)
                 }
                 moveToNextUser()
             }
@@ -164,14 +211,32 @@ class MainActivity : AppCompatActivity(), OverlayFragment.OverlayActionListener 
             currentIndex++
             showUser(matchPool[currentIndex])
         } else {
-            // TODO: Show "no more users" message
+            AlertDialog.Builder(this)
+                .setTitle("No More Users")
+                .setMessage("You've reached the end of the match pool. Please check back later for new users.")
+                .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
+                .show()
         }
     }
 
-    private fun showMatchDialog(matchedUserName: String) {
-        androidx.appcompat.app.AlertDialog.Builder(this)
-            .setTitle("It's a Match!")
-            .setMessage("You and $matchedUserName have liked each other.")
+    private fun showMatchDialog(matchedUserName: String, matchedUserPhoto: String, currentUserPhoto: String) {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_match, null)
+
+        dialogView.findViewById<TextView>(R.id.tv_match_message).text =
+            "You and $matchedUserName have liked each other."
+
+        Glide.with(this)
+            .load(currentUserPhoto)
+            .placeholder(R.drawable.ic_user_profile)
+            .into(dialogView.findViewById(R.id.iv_user1))
+
+        Glide.with(this)
+            .load(matchedUserPhoto)
+            .placeholder(R.drawable.ic_user_profile)
+            .into(dialogView.findViewById(R.id.iv_user2))
+
+        AlertDialog.Builder(this)
+            .setView(dialogView)
             .setPositiveButton("Start Chat") { dialog, _ ->
                 // TODO: Navigate to chat screen
                 dialog.dismiss()
