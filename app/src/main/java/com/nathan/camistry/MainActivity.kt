@@ -25,6 +25,7 @@ import com.nathan.camistry.ui.overlay.OverlayFragment
 class MainActivity : AppCompatActivity(), OverlayFragment.OverlayActionListener {
     private var matchPool: List<User> = emptyList()
     private var currentIndex = 0
+    private var currentUser: User? = null
     private val userRepository = UserRepository()
     private val actionController = ActionController()
     private val userId get() = FirebaseAuth.getInstance().uid
@@ -44,6 +45,12 @@ class MainActivity : AppCompatActivity(), OverlayFragment.OverlayActionListener 
         locationUpdateService = LocationUpdateService(this, userRepository)
 
         if (userId == null) return
+
+        if (userId != null) {
+            userRepository.getUser(userId!!) { user ->
+                currentUser = user
+            }
+        }
 
         if (ActivityCompat.checkSelfPermission(
                 this,
@@ -186,12 +193,9 @@ class MainActivity : AppCompatActivity(), OverlayFragment.OverlayActionListener 
         if (isLike) {
             actionController.likeUser(userId!!, targetUser.id) { isMatch ->
                 if (isMatch) {
-                    // Fetch current user photo
-                    userRepository.getUser(userId!!) { currentUser ->
-                        val matchedUserPhoto = targetUser.photos.firstOrNull() ?: ""
-                        val currentUserPhoto = currentUser?.photos?.firstOrNull() ?: ""
-                        showMatchDialog(targetUser.firstName, matchedUserPhoto, currentUserPhoto)
-                    }
+                    val matchedUserPhoto = targetUser.photos.firstOrNull() ?: ""
+                    val currentUserPhoto = currentUser?.photos?.firstOrNull() ?: ""
+                    showMatchDialog(targetUser.firstName, matchedUserPhoto, currentUserPhoto)
                 }
                 moveToNextUser()
             }
